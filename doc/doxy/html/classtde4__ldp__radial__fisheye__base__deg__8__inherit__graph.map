@@ -1,0 +1,8 @@
+<map id="tde4_ldp_radial_fisheye_base_deg_8&lt; VEC2, MAT2 &gt;" name="tde4_ldp_radial_fisheye_base_deg_8&lt; VEC2, MAT2 &gt;">
+<area shape="rect" id="node4" href="$classtde4__ldp__radial__fisheye__equidistant__deg__8.html" title="Plugin class for radial distortion. Does not compensate for decentering. " alt="" coords="580,5,765,61"/>
+<area shape="rect" id="node5" href="$classtde4__ldp__radial__fisheye__equisolid__deg__8.html" title="Plugin class for radial distortion. Does not compensate for decentering. " alt="" coords="586,85,759,141"/>
+<area shape="rect" id="node6" href="$classtde4__ldp__radial__fisheye__orthographic__deg__8.html" title="Plugin class for radial distortion. Does not compensate for decentering. " alt="" coords="576,165,769,221"/>
+<area shape="rect" id="node7" href="$classtde4__ldp__radial__fisheye__stereographic__deg__8.html" title="Plugin class for radial distortion. Does not compensate for decentering. " alt="" coords="593,245,752,301"/>
+<area shape="rect" id="node2" href="$classldpk_1_1ldp__builtin.html" title="This class handles the built&#45;in parameter and the lookup table. You may find it useful for your own d..." alt="" coords="159,133,279,174"/>
+<area shape="rect" id="node3" href="$classtde4__ld__plugin.html" title="Lens Distortion Plugin Base Class. " alt="" coords="5,140,111,167"/>
+</map>

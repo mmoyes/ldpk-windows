@@ -1,0 +1,92 @@
+cppcode
+	{
+	font-family:monospace;
+	}
+
+cpp
+	{
+	font-family:monospace;
+	}
+
+pre.cppcode
+	{
+	border: 1px solid #aaa;
+	padding-top:5px;
+	padding-bottom:5px;
+	padding-left:5px;
+	padding-right:5px;
+	background-color:#eee;
+	color:inherit;
+	font-size:smaller;
+	}
+
+span.span_cpp
+	{
+	padding-top:5px;
+	padding-bottom:5px;
+	font-family:monospace;
+	}
+
+span.tab
+	{
+	padding-left:2cm;
+	}
+
+span.preprocessorline
+	{
+	color:#339;
+	font-weight:normal;
+	font-style:normal;
+	}
+
+span.keyword
+	{
+	color:black;
+	font-weight:bold;
+	font-style:normal;
+	}
+
+span.storagekeyword
+	{
+	color:#a00;
+	font-weight:bold;
+	font-style:normal;
+	}
+
+span.cpluscomment
+	{
+	color:black;
+	font-weight:normal;
+	font-style:italic;
+	}
+
+span.braces
+	{
+	color:black;
+	font-weight:bold;
+	font-style:normal;
+	}
+
+span.characterconstant
+	{
+	color:#0a0;
+	font-weight:normal;
+	font-style:normal;
+	}
+
+span.numericconstant
+	{
+	color:#050;
+	font-weight:normal;
+	font-style:normal;
+	}
+
+span.string
+	{
+	color:#050;
+	font-weight:normal;
+	font-style:normal;
+	}
+
+
+

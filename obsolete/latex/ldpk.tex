@@ -1,0 +1,1133 @@
+\documentclass[10pt,a4paper]{article}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amsfonts}
+\usepackage{amscd}
+\usepackage{a4}
+\usepackage{bbm}
+
+\usepackage{moreverb}
+\usepackage{listings}
+\usepackage{color}
+\usepackage{graphicx}
+\usepackage{hyperref}
+
+%\usepackage[T1]{fontenc}
+%\newcommand{\changefont}[3]{\fontfamily{#1} \fontseries{#2} \fontshape{#3} \selectfont}
+\hypersetup{
+	pdfborder={0 0 0}
+	}
+ 
+\input{../../tex/highlight.sty}
+\input{../../tex/theorem_sdv.sty}
+\input{../../tex/celebrity_sdv.sty}
+\input{../../tex/syntaxhl_sdv.sty}
+\input{ldpk_defs.sty}
+
+\pagestyle{plain}
+\pagenumbering{arabic}
+
+\newcommand{\parity}{\mathrm{par}}
+
+\newcommand{\beq}{\begin{equation}}
+\newcommand{\eeq}{\end{equation}}
+\newcommand{\bea}{\begin{eqnarray}}
+\newcommand{\eea}{\end{eqnarray}}
+
+
+% Reelle Zahlen
+\newcommand{\Rgen}{\mathbb{R}}
+\newcommand{\Rpow}[1]{\mathbb{R}^{#1}}
+
+\newcommand{\Mat}[2]{\mathrm{Mat}_#1(#2)}
+\newcommand{\Bpi}{B_{\pi}}
+
+% Komplexe Zahlen
+\newcommand{\Cgen}{\mathbb{C}}
+
+% Quaternionen
+\newcommand{\Hgen}{\mathbb{H}}
+\newcommand{\Hunit}{\hat{\mathbb{H}}}
+\newcommand{\Hunitpos}{\hat{\mathbb{H}}^+}
+\newcommand{\Hunitneg}{\hat{\mathbb{H}}^-}
+\newcommand{\Haeq}{\hat{\mathbb{H}}^{\mathrm{Eq}}}
+\newcommand{\Hnonzero}{\mathbb{H}^{\neq 0}}
+
+% Gruppen und Algebren
+\newcommand{\SO}[1]{\mathrm{SO}(#1)}
+\newcommand{\SU}[1]{\mathrm{SU}(#1)}
+\newcommand{\Con}[1]{\mathrm{Con}(#1)}
+\newcommand{\GL}[1]{\mathrm{GL}(#1)}
+\newcommand{\so}[1]{\mathrm{so}(#1)}
+
+% Sphaeren
+\newcommand{\Sphaere}[1]{\mathrm{S}^{#1}}
+
+\newcommand{\dual}[1]{{}^\ast #1}
+\newcommand{\skal}[2]{#1 \cdot #2}
+
+\DeclareMathOperator{\trace}{tr}
+\DeclareMathOperator{\symm}{symm}
+
+\newcommand{\parallelprojektor}[1]{\Pi^{\parallel#1}}
+\newcommand{\orthogonalprojektor}[1]{\Pi^{\perp#1}}
+% Z.B. fuer die "Sphaerischen Tensoren" dritter Stufe
+\newcommand{\parallelprojektordrei}[1]{\Pi^{\parallel#1}}
+\newcommand{\orthogonalprojektordrei}[1]{\Pi^{\perp#1}}
+\newcommand{\orthogonalprojektorvier}[1]{\Pi^{\perp#1}}
+
+\newcommand{\einheitsprojektor}{\hat\Pi}
+
+% Funktor f\"ur Tangentialraeume
+\newcommand{\tangential}{\mathrm{T}}
+
+\newcommand{\id}[1]{\mathrm{id}_{#1}}
+\newcommand{\derive}[1]{\frac \partial {\partial #1}}
+\newcommand{\derivetwo}[2]{\frac \partial {\partial #1}\frac \partial {\partial #2}}
+\newcommand{\deriveat}[2]{\left.\frac \partial {\partial #1}\right|_{#2}}
+\newcommand{\derivetwoat}[3]{\left.\frac \partial {\partial #1}\frac \partial {\partial #2}\right|_{#3}}
+\newcommand{\norm}[1]{\left|#1\right|}
+
+\newcommand{\stern}[1]{{}^\ast{#1}}
+\newcommand{\sternvec}[1]{{}^\ast\vec{#1}}
+
+\newcommand{\hatvecq}{\hat{\vec{q}}}
+\newcommand{\OmegaQ}{\Omega(q)}
+\newcommand{\sinOmegaQ}{\sin_{\Omega}}
+\newcommand{\cosOmegaQ}{\cos_{\Omega}}
+\newcommand{\sinOmegaQHalb}{\sin_{\Omega/2}}
+\newcommand{\cosOmegaQHalb}{\cos_{\Omega/2}}
+\newcommand{\sinPowTwoOmegaQHalb}{\sin^2_{\Omega/2}}
+\newcommand{\cosPowTwoOmegaQHalb}{\cos^2_{\Omega/2}}
+\newcommand{\sinPowThreeOmegaQHalb}{\sin^3_{\Omega/2}}
+\newcommand{\cosPowThreeOmegaQHalb}{\cos^3_{\Omega/2}}
+\newcommand{\normVecQ}{{\norm{\vec{q\,}}}}
+\newcommand{\vecQuad}[1]{{\vec{#1\,}^2}}
+
+\newcommand{\matrixtwo}[4]{\left(\begin{matrix} #1 & #2 \\ #3 & #4 \end{matrix}\right)}
+
+
+\newcommand{\hlinks}{{h^\mathrm{L}}}
+\newcommand{\hrechts}{{h^\mathrm{R}}}
+
+\newcommand{\qrot}[1]{q^{(#1)}}
+
+\newcommand{\source}[1]{{\tt{#1}}}
+
+\newcommand{\vectwo}[2]{\left(\begin{array}{c}#1\\#2\end{array}\right)}
+\newcommand{\vectwonopar}[2]{\begin{array}{c}#1\\#2\end{array}}
+
+\setcounter{tocdepth}{6}
+\setcounter{secnumdepth}{6}
+
+\setlength{\parindent}{0pt}
+
+\title{Lens Distortion in 3DE4}
+\author{Science-D-Visions}
+\date{\today}
+ 
+\begin{document}
+
+\maketitle
+
+\tableofcontents
+
+\setcounter{section}{-1}
+\newpage
+\section{About this document}
+%
+\subsection{How to avoid reading all this}
+The document contains a lot of details which you do not need
+for developing at least a plugin with basic functionality,
+which means, \tde's core will be able to use it for calculations.
+In principle, all you need is the base class {\tt tde4\_ld\_plugin}
+which is located in
+\begin{verbatim}
+$LDPK/include/ldpk/tde4_ld_plugin.h
+\end{verbatim}
+The header file is quite self-explanatory. You derive your own \tde-plugin
+class from this base class. Your derived class then contains:
+\begin{itemize}
+\item Handling for the seven built-in parameters
+\item Handling for your model-dependent parameters
+\item A method {\tt undistort()}
+\item A method {\tt distort()}
+\end{itemize}
+Apart from that you need C-style create- and destroy-functions in the global namespace.
+Please copy them from
+\begin{verbatim}
+$LDPK/source/ldpk/tde4_ldp_example_radial_deg_8.C
+\end{verbatim}
+and insert the name of your plugin class in the create-function.
+Also, please keep in mind:
+\begin{itemize}
+\item Your plugin must be thread-safe. In \tde\ and some compositing systems,
+many instances of your plugin class will be created, one per thread.
+One instance is used by one thread only.
+\item Get your coordinate systems right and take into account lens center offset properly.
+\item \tde\ will invoke {\tt undistort()} pretty often, so this method should be fast.
+\end{itemize}
+After compiling, please move your shared object to
+\begin{verbatim}
+$TDE/user_data/ld_plugins/
+\end{verbatim}
+and start \tde. Your plugin should appear in \tde's \tdegui{Attribute Editor}.
+In order to develop a {\bf compositing node}, please follow the instructions of the compositing system's
+development kit, create a node class and either implement the mathematics from scratch
+or use the plugin class you wrote a minute ago. Also, keep in mind:
+\begin{itemize}
+\item An image is undistorted using the method {\tt distort()}!
+\item An image is distorted using the method {\tt undistort()}!
+\end{itemize}
+%
+\subsection{Versions of this document}
+If you have questions about this document, the math, the implementation or the software licence,
+please contact \href{mailto:uwe@sci-d-vis.com}{uwe@sci-d-vis.com}.
+Bug reports are welcome!\newline
+\newline
+\begin{tabular}{lll}
+Version 1.5	& 2013------	& In preparation\\
+Version 1.4	& 2013-04-25	& Removed obsolete section about derivatives\\
+Version 1.3	& 2012-06-29	& None\\
+Version 1.2	& 2012-02-02	& Added parameter {\tt tde4\_custom\_focus\_distance\_cm}\\
+Version 1.1	& 2011-09-05	& Minor corrections\\
+		&		& \Jacobi-matrix of the classic model\\
+Version 1.0	& 2011-02-16	& LDPK; Math; Implementation \\
+\end{tabular}
+%
+
+
+\section{The Lens Distortion Plugin Kit (LDPK)}
+The LDPK is meant to make it easier for you to develop a lens distortion plugin,
+either for \tde, or for your favourite compositing system.
+We tried to make it as little intrusive as possible. For \tde\ there is
+only a single base class you have to use.
+%
+\setcounter{subsection}{-1}
+\subsection{Versions of the LDPK}
+\begin{tabular}{lll}
+Version 1.7	& not yet	& Bounding Box methods in \ldpk{\tt ldp\_builtin}\\
+		&		& New Nuke plugins (easier to install and to use)\\
+Version 1.6	& 2013-11-12	& Python bindings for the built-in models\\
+		&		& Bugfix for string-valued parameters\\
+		&		& Pre-compiled libraries, modules, plugins\\
+Version 1.5	& 2013-09-16	& Bugfixes, check for undefined built-in parameters\\
+Version 1.4	& 2013-04-25	& New model Anamorphic-Standard-Degree-4 and modified\\
+		&		& Radial-Standard-Degree-4 (beam-splitter compensation)\\
+Version 1.3	& 2012-06-29	& The Radial-Degree-8-Model compensates for equisolid-angle\\
+		&		& fisheye distortion\\
+Version 1.2	& 2012-02-02	& Added parameter {\tt tde4\_custom\_focus\_distance\_cm}\\
+Version 1.1	& 2011-04-16	& Minor corrections in \doxygen\ doc\\
+		&		& Simplified \ldpk{\tt/classic\_3de\_mixed\_distortion}\\
+		&		& Base class for built-in plugin classes\\
+		&		& Thread-safety of the {\tt distort}-method (lookup-tables)\\
+		&		& Helper classes now form a library \tt{libldpk.a}\\
+Version 1.0	& 2011-02-16\\
+\end{tabular}
+\subsection{What you need}
+In order to use the LDPK you need the following:
+\begin{itemize}
+\item One of the following operating systems:
+\begin{itemize}
+\item Mac OSX 10.x 64bit
+\item Linux 64bit
+\end{itemize}
+\item {\tt g++}, the gnu c++ compiler, version 4.x.x (must have)
+\item a browser for reading the class documentation (should have)
+\item {\tt /bin/csh} called ``C shell'' (should have)
+\item {\tt \gnuplot} for visualizing (nice to have)
+\end{itemize}
+%
+\subsection{Installing the LDPK}
+The LDPK is delivered as a tar-archive. In order to install it please go to the directory,
+where you would like to place the LDPK, copy the tar-archive there and invoke
+\begin{verbatim}
+tar xfz ldpk-xxx.tgz
+\end{verbatim}
+on the command line. LDPK will unpack into a directory
+named {\tt ldpk-xxx}, where {\tt xxx} stands for some version number.
+In this document, we will refer to the base directory of the unfolded tar-archive as \ldpk.
+%
+\subsection{Content of the LDPK}
+The LDPK contains the following directories:
+\begin{itemize}
+\item {\tt bin} - precompiled binaries for testing the plugin on various platforms.
+Compiled test programs will be placed here.
+Once you have implemented and compiled your plugin you can quickly check it by
+running one of the following programs:
+	\begin{itemize}
+	\item {\tt tde4\_plugin\_info.linux}
+	\item {\tt tde4\_plugin\_info.osx}
+	\end{itemize}
+After running the compile script, you will find some more tools here:
+	\begin{itemize}
+	\item {\tt test\_plugin\_loader} - Another simple test program for loading a plugin.
+	You simply run the program and pass the abolute or relative
+	path to your plugin shared object. The program will write
+	some information about the plugin to {\tt stdout} and exit.
+	\item {\tt test\_model\_visualizer} - A program which generates \gnuplot\
+	data for plotting a vector field from a parameter specification file.
+	We will have a look at this tool later, when we discuss how to implement
+	a plugin for \tde.
+	\end{itemize}	
+\item {\tt doc} - \doxygen\ and pdf documents, including this one.
+The entry point for the \doxygen\ documents is {\tt file:///}\ldpk/{\tt doc/doxy/html/index.html}.
+The pdf-document you are currently reading is located in \ldpk/{\tt doc/tex/}.
+\item {\tt include} - header files. The best way to explore these is to read the
+\doxygen\ documentation, starting at {\tt file:///}\ldpk/{\tt doc/doxy/html/index.html}
+If you plan to implement a compositing node for \tde's built-in distortion models,
+please have a look at these classes. The distortion classes contain reference implementations
+for all built-in models of \tde.
+\begin{itemize}
+\item {\tt ldpk::radial\_decentered\_distortion}
+\item {\tt ldpk::generic\_radial\_distortion}
+\item {\tt ldpk::generic\_anamorphic\_distortion}
+\item {\tt ldpk::classic\_3de\_mixed\_distortion}
+\item {\tt tde4\_ldp\_radial\_decentered\_deg\_4}
+\item {\tt tde4\_ldp\_radial\_deg\_8}
+\item {\tt tde4\_ldp\_anamorphic\_deg\_6}
+\item {\tt tde4\_ldp\_classic\_3de\_mixed}
+\end{itemize}
+\item {\tt lib} - a place for libraries. When you run the compile script,
+any libraries to be generated are placed here.
+\item {\tt script} - scripts for compiling and cleaning up.
+The scripts are:
+	\begin{itemize}
+	\item {\tt makeall.csh} - A script for compiling examples and test programs.
+	\item {\tt cleanup.csh} - Remove all files created by {\tt makeall.csh}
+	\end{itemize}
+\item {\tt source} - source code for classes
+\item {\tt test} - source code for test programs, see {\tt bin/}.
+\end{itemize}
+%
+\subsection{Scripts}
+All test programs and example plugins are compiled
+by running \ldpk{\tt/script/makeall.csh}.
+The script \ldpk{\tt/script/cleanup.csh} is used to reset
+the directory content of \ldpk\ to its original state.
+The script \ldpk{\tt/script/makedoc.csh} (which you probably don't need) is used for
+creating the \doxygen\ documents. When you have compiled everything
+you can do a first test by the following commands.
+This program generates table data for \gnuplot\ by evaluating the plugin
+passed and using the model parameters given by some parameter file:
+\begin{verbatim}
+unix> cd $LDPK
+unix> bin/test_model_visualizer lib/tde4_ldp_example_radial_deg_8.so\
+        test/para_example_radial_deg_8.data /tmp/outgp.data
+unix> gnuplot
+gnuplot> plot '/tmp/outgp.data' with vector
+\end{verbatim}
+The result is a vector field representation of a radial distortion model.
+%
+%
+%
+\section{Math}
+In the following, we will specify in mathematical notation what we understand by a distortion model
+in the context of \tde. By intuition, you will already know most of what we present here, if you want to implement a lens distortion
+plugin or compositing node. Concerning plugins for \tde, it is important however to get a concept of
+{\em linear distortion models}, which we explain in this section.
+\subsection{Notation}
+Given two functions $f:X\rightarrow X'$ and $g:Y\rightarrow Y'$ where $f(X)\subset Y$ we compose them by writing
+\begin{equation}
+g\circ f
+\end{equation}
+which maps $x$ to $g(f(x))$.
+We denote the $n$-dimensional space by $\Rpow{n}$.
+The components of a tuple $p\in\Rpow{n}$ are $p_i$ where $i\in\{0,\ldots,n-1\}$.
+Generally, we use latin indices in order to describe points in parameter spaces.
+
+Images are defined on a two-dimensional subspace of $\Rpow{2}$.
+Points and vectors in images space are tuples $(x,y)$. We describe them using an index notation as follows:
+\begin{itemize}
+\item
+For any point $p$ in $\Rpow{2}$ we refer to the components of $p$ by writing $p_\mu$,
+where $\mu = 0$ and $\mu = 1$ address the $x$- and $y$-component of $p$, respectively.
+\item A function $g$ mapping to $\Rpow{2}$ is decomposed in $x$- and $y$-component in the same way:
+$g_\mu(\ldots)$ or $g(\ldots)_\mu$.
+\item The derivative of a function $g$ mapping from $\Rpow{2}$ is written as
+\begin{equation}
+\frac \partial {\partial p_\mu} g(p)
+\end{equation}
+\end{itemize}
+We use greek indices $\mu,\nu\ldots$ for the special case of components of tuples in an image space.
+The \euclidian\ norm of a tuple $p$ in $n$ dimensions is denoted by
+\begin{equation}
+\norm{p} = \sqrt{\sum_{i=0}^{n-1} p_i^2}
+\end{equation}
+
+
+
+\subsection{Definitions}
+We do not specify explicitly the continuity class of functions in order to not overburden this section.
+Usually distortion functions are quite reasonable as far as continuity and differentiability are concerned. 
+For completeness, let us assume that all functions are at least two times continuously differentiable.
+\begin{defn}
+\label{def:DistortionModel}
+Let $P$ and $Q$ be (reasonable) subsets of $\Rpow{2}$, i.e. they are connected submanifolds of $\Rpow{2}$.
+Let $C$ be a connected submanifold of $\Rpow{n}$ for some number $n$. We call $C$ the {\em parameter
+space} and the elements of $C$ {\em parameter sets}.
+We consider a smooth mapping
+\begin{equation}
+g : P \times C \rightarrow Q
+\end{equation}
+For any given parameter set $c\in C$ we define the function $g_c$ by
+\begin{equation}
+g_c:P\rightarrow Q:p\mapsto g(p,c)
+\end{equation}
+
+We call $g$ a {\em distortion model} with $n$ parameters, if it has the following properties:\newline
+\begin{enumerate}
+\item {\bf Fixed point} - There is a point $p_0 = (x_0,y_0)\in P$ so that for all $c\in C$
+\begin{equation}
+g(p_0,c) = p_0
+\end{equation}
+i.e. for any $c\in C$, $p_0$ is a fixed point of $g_c$. We call $p_0$ the {\em lens center}.\newline
+
+\item{\bf Default parameters} - There is a parameter set $c_0\in C$, so that for all $p\in P$
+\begin{equation}
+g(p,c_0) = p
+\end{equation}
+i.e. $g_{c_0}$ is the identity map on $P$.
+
+\item {\bf Invertibility} - $g_c$ is invertible, i.e. there is a mapping
+\begin{equation}
+g_c^{-1}: Q \rightarrow P
+\end{equation}
+so that
+\begin{equation}
+g_c^{-1}\circ g_c = \left.\mathrm{id}\right|_P
+\end{equation}
+This tells us more about $P$ and $Q$ than the distortion model itself.
+We simply demand, that the distortion model has an inverse, when we need it.
+\end{enumerate}
+\end{defn}
+\begin{rmrk}
+For any lens distortion model we can define a parameter set $c_0$ as {\em default values},
+if $g_c$ is the identity map, which is important for \tde's plugin concept.
+\end{rmrk}
+%
+\begin{defn}
+Let $g:P\times C \rightarrow Q$ be a lens distortion model with fixed point $\pfix$.
+Let $T_p$ be the translation operator $T_p:\Rpow{2}\rightarrow\Rpow{2}$
+which maps $x$ to $x+p$. We define a shifted distortion model $\hat{g}$ by:
+\begin{equation}
+\hat{g}_c = T_{\pfix}^{-1} \circ g_c \circ T_{\pfix}
+\end{equation}
+where $\hat{g}_c$ maps from $P-x$ to $Q-x$.
+The following proposition tells us, that we can simply consider lens distortion models
+around $(0,0)$, as long as we define them as in this section. This simplifies
+our notation and allows us to separate mathematics from \tde-things when we implement a plugin.
+\end{defn}
+\begin{prop}
+\label{prop:ShiftedModel}
+$\hat{g}$ is a distortion model.
+\end{prop}
+\begin{proof}
+This is easy to see. We check the four items from our definition.
+\begin{enumerate}
+\item The fixed point of $\hat{g}_c$ is $(0,0)$.
+\item If $c_0$ is the default parameter set, then
+\begin{equation}
+\hat{g}_{c_0} = T_{\pfix}^{-1} \circ g_{c_0} \circ T_{\pfix} = T_{\pfix}^{-1} \circ \left.id\right|_{\Rpow{2}} \circ T_{\pfix} = T_{\pfix}^{-1} \circ T_{\pfix} = \left.id\right|_{\Rpow{2}}
+\end{equation}
+\item Since $g_c:P\rightarrow Q$ and $T_{\pfix}$ are invertible, $\hat{g}_c:P-x\rightarrow Q-x$ is invertible as well.
+\end{enumerate}
+\end{proof}
+
+\subsection{Inverting the distortion function}
+\label{InvertingTheModel}
+For a given distortion function $g_c:P\rightarrow Q$ we have to find a way of computing the inverse.
+Let us assume $g_c$ is a distortion function for {\em removing} lens distortion, then we also need
+(e.g. for image processing) the inverse distortion function. For any given point $q\in Q$
+we wish to find the point $p\in P$ so that $g_c(p) = q$. This can be done as follows
+using \Newton's method. First, we define a function
+\begin{equation}
+F(p) = g_c(p) - q
+\end{equation}
+Finding the inverse of $q$ is equivalent to find the zero point of $F$.
+Starting at some initial value $p^{(0)}$ we iterate
+\begin{equation}
+p^{(k+1)} = p^{(k)} - J^{-1}(p) F(p^{(k)})
+\end{equation}
+where
+\begin{equation}
+J_{\mu\nu}(p) = \frac \partial {\partial p_\nu} F_\mu(p) = \frac \partial {\partial p_\nu} g_c(p)_\mu
+\end{equation}
+is the \Jacobi-matrix of $F$ at $p$,
+until
+\begin{equation}
+\norm{p^{(k+1)} - p^{(k)}} < \epsilon
+\end{equation}
+for some\footnote{We do not work out the details here. Just some sort of termination criterion\ldots} pre-defined $\epsilon$.
+The algorithm will converge if $p^{(0)}$ is close to $g_c^{-1}(q)$.
+A good choice for the initial value, if no other information is available, is
+\begin{equation}
+p^{(0)} = q - (g_c(q) - q) = 2q - g_c(q)
+\end{equation}
+The idea is the following: We assume that $g_c(p)$ depends smoothly on $p$ and varies slowly.
+That means $g_c(q) - q$ is not so far away from $g_c^{-1}(g_c(q)) - g_c^{-1}(q)$ which is $q - p$.
+Then $p$ hopefully is not so far from $2q - g_c(q)$. Results are not bad for this initial value.
+Yet, even with this choice of initial values, there are situations in practice, where
+\Newton's method does not converge. For this reason it makes sense to generate lookup tables.
+This is explained in section \ref{Implementation}.
+
+\subsection{A zoo of lens distortion models}
+In this section, we present the math of \tde's built-in distortion models.
+In the following subsections, we will call the undistorted point
+\begin{equation}
+q = (x',y'),
+\end{equation}
+while the distorted point is
+\begin{equation}
+p = (x,y).
+\end{equation}
+All models express by which prescription the undistorted
+point is computed from the distorted point. In all models we have
+chosen the coordinates in a way, so that the lens center is $(0,0)$
+and that the diameter of the image is 2 (i.e. diagonally normalized coordinates).
+Some of the models are represented in polar coordinates:
+\begin{align}
+r &= \norm{p} = \sqrt{x^2 + y^2}\nonumber\\
+\phi &= \arctan(y,x)
+\end{align}
+where we use $\arctan(\cdot,\cdot)$ as math symbol for {\tt double atan2(double y,double x)}
+(see manpage {\tt man atan2}).
+For most of the built-in distortion models we show the \Jacobi-matrix.
+The built-in models use this in order to compute the inverse of the
+distortion function (see section \ref{InvertingTheModel} for details).
+The advantage of implementing the \Jacobi-matrix instead of relying on difference quotients
+is a higher performance by a factor 2 to maybe 3.
+
+\subsubsection{Coordinate systems}
+We will have to deal with several coordinate systems,
+which we describe in the following. Real measure coordinates
+are helpful because in \tde\ the camera is specified by means
+of real measure quantities, including filmback width, filmback height, lens center offset
+and focal length. Unit coordinates are helpful, because they represent a resolution independent,
+camera-scaling invariant way to specify the lens distortion plugin API.
+Tracking data in \tde\ are stored in unit coordinates. For our lens distortion models
+we need isometric, unit-free coordinates, which are called diagonally normalized coordinates.
+In this section we describe, how these systems are related to each other.
+%
+\paragraph{Camera coordinates}
+\begin{figure}
+\centering
+\includegraphics{camera_pyramid_and_lens_center}
+\caption{Camera pyramid and lens center}
+\label{fig:CameraPyramidAndLensCenter}
+\end{figure}
+Camera coordinates are real measure coordinates
+on the projection plane of a camera placed in
+the origin of three-dimensional space.
+The projection plane is located at $z=-\fcm$, where $\fcm$
+is the focal length in cm (see fig.
+\ref{fig:CameraPyramidAndLensCenter}).
+The lens center in these coordinates is $(0,0)$, lower left
+and upper right corners are
+\begin{equation}
+(-\frac \wfbcm 2,-\frac \hfbcm 2)
+\end{equation}
+and
+\begin{equation}
+(+\frac \wfbcm 2,+\frac \hfbcm 2),
+\end{equation}
+respectively.
+
+%
+\paragraph{Unit coordinates}
+\label{UnitCoordinates}
+Unit coordinates are important because we use them for
+defining the API of our lens distortion plugins.
+They are defined as shown in fig.~\ref{fig:CoordinatesCameraVsUnit}.
+We define the domain of the image as $I\times I$ with $I=[0,1]$, where $(0,0)$ is the lower left corner
+and $(1,1)$ is the upper right corner. The center of the image is $(\frac 1 2,\frac 1 2)$.
+Unit coordinates are related to camera coordinates by the mapping $\cmtounit$:
+\begin{align}
+\label{eq:DefinitionCmToUnit}
+\xunit &= \frac \xcm \wfbcm + \frac \xlcocm \wfbcm + \frac 1 2 \nonumber\\
+\yunit &= \frac \ycm \hfbcm + \frac \ylcocm \hfbcm + \frac 1 2.
+\end{align}
+The inverse mapping $\unittocm$ is
+\begin{align}
+\label{eq:DefinitionUnitToCm}
+\xcm &= \left(\xunit - \frac 1 2\right) \wfbcm - \xlcocm \nonumber\\
+\ycm &= \left(\yunit - \frac 1 2\right) \hfbcm - \ylcocm.
+\end{align}
+Fig.~\ref{fig:CoordinatesCameraVsUnit} illustrates the relationship between
+the two coordinate systems.
+%
+\begin{figure}[ht]
+\centering
+\includegraphics[width=12.5cm]{unit_coords_vs_camera_coords}
+\caption{Camera coordinates and unit coordinates}
+\label{fig:CoordinatesCameraVsUnit}
+\end{figure}
+%
+\paragraph{Diagonally normalized coordinates}
+\label{DiagonallyNormalizedCoordinates}
+Unit coordinates have the draw back, that they are not isometric:
+a length value along $x$ does not represent the same length in real world
+measures as it does along $y$. Therefore, all our built-in lens distortion
+models {\bf are defined in diagonally normalized coordinates}. In these units,
+the image has a diagonal diameter of 2. We use the following symbols to convert
+to and from this system:
+\bea
+\dntounit : \vectwonopar{\xdn}{\ydn} & \mapsto & \vectwonopar{\xunit}{\yunit} \vectwonopar== \vectwonopar{\xdn \frac \rfbcm \wfbcm +\frac \xlcocm \wfbcm + \frac 1 2}{\ydn \frac \rfbcm \hfbcm +\frac \ylcocm \hfbcm + \frac 1 2} \label{eq:DefinitionDnToUnit} \\
+\unittodn : \vectwonopar{\xunit}{\yunit} & \mapsto & \vectwonopar{\xdn}{\ydn} \vectwonopar== \vectwonopar{\left(\xunit - \frac 1 2\right) \frac \wfbcm \rfbcm - \frac \xlcocm \rfbcm}{\left(\yunit - \frac 1 2\right) \frac \hfbcm \rfbcm - \frac \ylcocm \rfbcm} \label{eq:DefinitionUnitToDn} \nonumber\\
+\dntocm   : \vectwonopar{\xdn}{\ydn} & \mapsto & \vectwonopar{\xcm}{\ycm} \vectwonopar== \vectwonopar{\xdn \rfbcm}{\ydn \rfbcm} \label{eq:DefinitionDnToCm} \\
+\cmtodn   : \vectwonopar{\xcm}{\ycm} & \mapsto & \vectwonopar{\xdn}{\ydn} \vectwonopar== \vectwonopar{\frac \xcm \rfbcm}{\frac \ycm \rfbcm} \label{eq:DefinitionCmToDn}
+\eea
+where we have defined the filmback radius by
+\beq
+\rfbcm = \frac 1 2 \sqrt{\wfbcm^2+\hfbcm^2}
+\eeq
+%
+\subsubsection{Decentering}
+All lens systems suffer from certain mechanical inaccuracies.
+One of these inaccuracies is referred to in the literature as {\em decentering}.
+It means, that not all lenses in the lens system are precisely centered on the optical axis.
+Up to a certain degree, all built-in models we present in the following sections
+are able to account for decentering, since lens center offset can be optimized for all models.
+However, only one model is able to separate decentering effects from lens center offset, namely
+\tdegui{Radial - Standard, Degree 4}. This model is already used in production
+and we recommend it for non-anamorphic lenses.
+
+
+\subsubsection{3DE Classic LD Model}
+This is the model which has been used in \tde\ before the plugin concept was realized.
+It combines degree-2 anamorphic terms and degree-4 radial terms.
+As already mentioned, we use diagonally normalized coordinates in our lens distortion models.
+We denote coefficients for the $x$-component and $y$-component by $c^x_{\ldots}$ and $c^y_{\ldots}$,
+respectively.
+\begin{align}
+x'	&= x(1 + c^x_{x} x^2 + c^x_{y} y^2 + c^x_{xx} x^4 + c^x_{xy} x^2 y^2 + c^x_{yy} y^4) \nonumber\\
+y'	&= y(1 + c^y_{x} x^2 + c^y_{y} y^2 + c^y_{xx} x^4 + c^y_{xy} x^2 y^2 + c^y_{yy} y^4) \nonumber\\
+\end{align}
+where the coefficients are represented by five parameters $\delta,\epsilon,\eta_x,\eta_y,q$:
+\begin{align}
+c^x_{x}		&= \frac {\delta} {\epsilon} &
+c^x_{y}		&= \frac {\delta + \eta_x} {\epsilon} &
+c^x_{xx}	&= \frac {q} {\epsilon} &
+c^x_{xy}	&= 2 \frac {q} {\epsilon} &
+c^x_{yy}	&= \frac{q} {\epsilon} \nonumber\\
+c^y_{x}		&= \delta + \eta_y &
+c^y_{y}		&= \delta &
+c^y_{xx}	&= q &
+c^y_{xy}	&= 2 q &
+c^y_{yy}	&= q \nonumber\\
+\end{align}
+The names of these parameters in \tde\ are:
+\begin{center}
+\begin{tabular}{ll}
+$\delta$ & \tdegui{Distortion} \nonumber\\
+$\epsilon$ & \tdegui{Anamorphic Squeeze} \nonumber\\
+$\eta_x$ & \tdegui{Curvature X} \nonumber\\
+$\eta_y$ & \tdegui{Curvature Y} \nonumber\\
+$q$ & \tdegui{Quartic Distortion} \nonumber\\
+\end{tabular}
+\end{center}
+The reference implementation can be found in
+\begin{verbatim}
+$LDPK/include/ldpk/ldpk_classic_3de_mixed_distortion.h
+\end{verbatim}
+The \Jacobi-matrix is
+\begin{align}
+J_{00}	&= 1 + 3 c^x_x x^2 + c^x_y y^2 + 5 c^x_{xx} x^4 + 3 c^x_{xy} x^2 y^2 + c^x_{yy} y^4 \nonumber\\
+J_{01}	&= 2 c^x_y x y + 2 c^x_{xy} x^3 y + 4 c^x_{yy} x y^3 \nonumber\\
+J_{10}	&= 2 c^y_x x y + 4 c^y_{xx} x^3 y + 2 c^y_{xy} x y^3 \nonumber\\
+J_{11}	&= 1 + c^y_x x^2 + 3 c^y_y y^2 + c^y_{xx} x^4 + 3 c^y_{xy} x^2 y^2 + 5 c^y_{yy} y^4.
+\end{align}
+
+Although this model is widely spread, we recommend to
+select either \tdegui{Anamorphic - Standard, Degree 4} or \tdegui{Radial - Standard, Degree 4}.
+
+\subsubsection{Anamorphic, Degree $6$}
+The anamorphic model uses a lot of parameters, probably more than would be necessary,
+to model anamorphic lenses when no decentering is involved.
+We split $g(p,c)$ into $x$- and $y$-component:
+\begin{align}
+x'	&= x(1	&&+ c^x_{02} r^2 &&+ c^x_{04} r^4 &&+ c^x_{06} r^6 \nonumber\\
+	&	&&+ c^x_{22} r^2 \cos{2\phi} &&+ c^x_{24} r^4 \cos{2\phi} &&+ c^x_{26} r^6 \cos{2\phi} \nonumber\\
+	&	&& &&+ c^x_{44} r^4 \cos{4\phi} &&+ c^x_{46} r^6 \cos{4\phi} \nonumber\\
+	&	&& && &&+ c^x_{66} r^6 \cos{6\phi})\nonumber\\
+y'	&= y(1	&&+ c^y_{02} r^2 &&+ c^y_{04} r^4 &&+ c^y_{06} r^6 \nonumber\\
+	&	&&+ c^y_{22} r^2 \cos{2\phi} &&+ c^y_{24} r^4 \cos{2\phi} &&+ c^y_{26} r^6 \cos{2\phi} \nonumber\\
+	&	&& &&+ c^y_{44} r^4 \cos{4\phi} &&+ c^y_{46} r^6 \cos{4\phi} \nonumber\\
+	&	&& && &&+ c^y_{66} r^6 \cos{6\phi})
+\end{align}
+An implementation of this model, which you can use for compositing plugins is in
+\begin{verbatim}
+$LDPK/include/ldpk/ldpk_generic_anamorphic_distortion.h
+\end{verbatim}
+
+\subsubsection{Anamorphic - Standard, Degree $4$}
+The standard anamorphic model is a degree-4 anamorphic model with additional parameters
+which allow modelling a slightly rotated anamorpic lens and scaling in two directions.
+We shall discuss the details in a later version of this document.
+The pure anamorphic part reads
+\begin{align}
+x'	&= x(1	&&+ c^x_{02} r^2 &&+ c^x_{04} r^4 \nonumber\\
+	&	&&+ c^x_{22} r^2 \cos{2\phi} &&+ c^x_{24} r^4 \cos{2\phi} \nonumber\\
+	&	&& &&+ c^x_{44} r^4 \cos{4\phi}) \nonumber\\
+y'	&= y(1	&&+ c^y_{02} r^2 &&+ c^y_{04} r^4 \nonumber\\
+	&	&&+ c^y_{22} r^2 \cos{2\phi} &&+ c^y_{24} r^4 \cos{2\phi} \nonumber\\
+	&	&& &&+ c^y_{44} r^4 \cos{4\phi})
+\end{align}
+
+\subsubsection{Radial - Fisheye, Degree $8$}
+The current model for compensating fisheye distortion uses an equisolid-angle mapping function
+and an even-degree 8 polynomial. We'll describe the details in a later version of this document.
+
+\subsubsection{Radial - Standard, Degree $4$}
+This model is a slight modification of the famous
+distortion model by \Brown [1966] and \Conradi [1919].
+It is a model for radially symmetric lenses which accounts for
+slight decentering of lenses. In coordinates around the lens center,
+the model up to and including including order five\footnote{Our nomenclature ``Degree 4'' refers to the power of $r$ at $c_4$} reads
+\begin{align}
+x' &= x (1 + c_2 r^2 + c_4 r^4) + \left[t_1(r^2+2x^2) + 2t_2 xy\right]\ (1 + t_3 r^2)\nonumber\\
+y' &= y (1 + c_2 r^2 + c_4 r^4) + \left[t_2(r^2+2x^2) + 2t_1 xy\right]\ (1 + t_3 r^2) .
+\end{align}
+As you see, this model is not linear in its coefficients, since $t_3$ appears as a product with $t_1$ and $t_2$.
+We have modified this model by introducing an additional parameters in the following way. We define
+\begin{align}
+u_1 &= t_1 & u_3 &= t_3 t_1 \nonumber\\
+v_1 &= t_2 & v_3 &= t_3 t_2.
+\end{align}
+Rewriting the original model by means of these four parameters leads to the linear form
+(i.e. no products of coefficients)
+\begin{align}
+x'	&= x (1 + c_2 r^2 + c_4 r^4)
+	+ (r^2 + 2 x^2)	(u_1 + u_3 r^2)
+	+ 2 xy		(v_1 + v_3 r^2) \nonumber\\
+y'	&= y (1 + c_2 r^2 + c_4 r^4)
+	+ (r^2 + 2 y^2)	(v_1 + v_3 r^2)
+	+ 2 xy		(u_1 + u_3 r^2).
+\end{align}
+We have added two more parameters for compensating artefacts resulting
+from the beam-splitter used in certain stereo rigs. We shall describe them in a later
+version of this document.
+
+In practice this means, we add one degree of freedom to the system,
+but in turn we get a faster and more robust method for computing the coefficients.
+An implementation of this model, which you can use for compositing plugins is
+in
+\begin{verbatim}
+$LDPK/include/ldpk/ldpk_radial_decentered_distortion.h}
+\end{verbatim}
+The \Jacobi-matrix $J_{\mu\nu}$ (without compensating for beam-splitter) is:
+\begin{align}
+J_{00}	&= 1 + c_2 (y^2 + 3x^2) + c_4 (y^2 + 5x^2) r^2 \nonumber\\
+	&+ 6 u_1 x + u_3 (8 x y^2 + 12 x^3)
+	+ 2 v_1 y + v_3 (2 y^3 + 6 x^2 y) \nonumber\\
+J_{01}	&= 2 c_2 xy + 4 c_4 xy r^2 \nonumber\\
+	&+ 2 u_1 y + u_3 (8 x^2 y + 4 y^3)
+	+ 2 v_1 x + v_3 (2 x^3 + 6 x y^2)\nonumber\\
+J_{10}	&= 2 c_2 xy + 4 c_4 xy r^2 \nonumber\\
+	&+ 2 u_1 y + u_3 (6 x^2 y + 2 y^3)
+	+ 2 v_1 x + v_3 (4 x^3 + 8 x y^2) \nonumber\\
+J_{11}	&= 1 + c_2 (x^2+3y^2) + c_4 (x^2 + 5y^2) r^2 \nonumber\\
+	&+ 6 v_1 y + v_3 (8 x^2 y + 12 y^3)
+	+ 2 u_1 x + u_3 (2 x^3 + 6 x y^2).
+\end{align}
+
+
+\section{Implementation}
+\label{Implementation}
+\subsection{General remarks}
+
+On a low technical level, removing lens distortion is done in two ways
+for two different purposes:
+\begin{itemize}
+\item We would like to remove distortion for a given set of point positions.
+These point positions can be e.g. feature points from tracking or image analysis.
+\item On the other hand we would like to remove distortion from
+pixel-based image material. In this case we already {\em know} the target
+positions, i.e. the position of all pixels, but would like to know where
+a particular pixel originates from.
+\end{itemize}
+Let us consider a distortion function $g$, which maps a distorted point $p$
+to an undistorted point $q$. It's inverse mapping is denoted by $g^{-1}$ and maps
+$q$ back to $p$. The two situations are shown in fig.~\ref{fig:MappingAndInverseMapping}.
+
+\begin{quote}
+In this document we will {\em always} call $g$ the {\bf distortion function}
+and $g^{-1}$ the {\bf inverse distortion function}.
+\end{quote}
+
+For all distortion models, we postulate that the distortion function $g$
+shall be calculated without recurse to any kind of initial value (i.e. non-iteratively),
+while the inverse distortion function may be implemented as iterative function
+and require initial values. This way of formulating the distortion function and its inverse
+is widely spread in the literature, and it makes sense for the following reason:
+In \tde\ we need fast, precise and robust access to undistorted tracking data without initial values.
+For compositing nodes used for image processing, however, complete images or large parts
+of an image have to be undistorted. This justifies the use of a lookup table in order to calculate
+the inverse distortion function, and this makes it easy to calculate functions based on initial
+values like $g^{-1}$.
+
+
+\begin{figure}[ht]
+\centering
+\includegraphics[width=10cm]{mapping_and_inverse_mapping}
+\caption{Mapping and inverse mapping}
+\label{fig:MappingAndInverseMapping}
+\end{figure}
+
+\subsection{The Lens Distortion Plugin Concept}
+\tde's lens distortion plugin concept is built upon
+an abstract class \tdeldplugin, from which the developer
+of a plugin derives their own class. The resulting
+class is compiled as shared object library and placed
+at {\tt /user\_data/ld\_plugins/} in \tde's installation directory.
+%
+\subsubsection{The API}
+In the following, we will have a closer look at the plugin API.
+The header file is called {\tt tde4\_ld\_plugin.h}.
+The class \tdeldplugin\ is an abstract class and therefore starts like this:
+\begin{lstlisting}[language=mycpp]
+class tde4_ld_plugin
+	{
+public:
+	virtual ~tde4_ld_plugin() {}
+	...
+	};
+\end{lstlisting}
+
+\paragraph{Model and parameter identifiers}
+Each distortion model has a unique name, and it will be identified by this name.
+The length of this name is restricted to 100 characters.
+The derived class provides this name by implementing the method {\tt getModelName()}.
+By default, each method has a boolean return value in order to indicate an error
+while the method is called. A return value of \true\ indicates, that no
+error has occured.
+\begin{lstlisting}[language=mycpp]
+	...
+virtual bool getModelName(	char *model) = 0;
+
+virtual bool getNumParameters(	int &n) = 0;
+
+virtual bool getParameterName(	int i,
+				char *identifier) = 0;
+
+	...
+\end{lstlisting}
+
+Each model will have a number of parameters, which characterize the distortion function.
+The number of parameters is obtained by calling {\tt getNumParameters()}.
+Each parameter has a type and an identifier. Parameters are addressed by means of their identifier
+in every method of the plugin class. The method {\tt getParameterName()} is used to get this
+identifier. Its length is restricted to 100 characters.
+\paragraph{Parameter types and values}
+Once we have the identifier of a parameter
+we can obtain its properties and control it. {\tt getParameterType()} delivers the type.
+The types are given by the following {\tt enum}-declaration in {\tt tde4\_ld\_plugin.h}:
+\begin{lstlisting}[language=mycpp,tabsize=8]
+// parameter types...
+enum tde4_ldp_ptype {
+	TDE4_LDP_STRING, TDE4_LDP_DOUBLE, TDE4_LDP_INT,
+	TDE4_LDP_FILE, TDE4_LDP_TOGGLE, TDE4_LDP_ADJUSTABLE_DOUBLE };
+
+...
+// returns type of given parameter...
+virtual bool getParameterType(	const char *identifier,
+					tde4_ldp_ptype &type) = 0;
+...
+\end{lstlisting}
+In \tde's user interface, the type of a parameter determines, how it is represented; {\tt string}
+parameters are represented by a single line text field, {\tt file} parameters have a button
+in order to open a file browser. {\tt double} and {\tt adjustable double} parameters are represented
+as a floating point number. An adjustable parameter can be calculated
+in \tde's \tdegui{Matrix Tool} or in the \tdegui{Parameter Adjustment Window}.
+
+%\begin{figure}[ht]
+%\centering
+%\includegraphics[scale=0.5,bb = 0 0 507 580]{parameter_adjustment_window.png}
+%\caption{Parameter Adjustment Window}
+%\label{fig:CoordinatesDiagNorm}
+%\end{figure}
+
+
+The next four methods are used for obtaining the default value for each parameter.
+\begin{lstlisting}[language=mycpp,tabsize=8]
+virtual bool getParameterDefaultValue(	const char *identifier,
+					double &v) = 0;
+virtual bool getParameterDefaultValue(	const char *identifier,
+					char *v);
+virtual bool getParameterDefaultValue(	const char *identifier,
+					int &v);
+virtual bool getParameterDefaultValue(	const char *identifier,
+					bool &v);
+\end{lstlisting}
+The following function makes sense for {\tt adjustable double} parameters. By means
+of this method \tde\ will know the domain of definition of the parameter, which
+plays a certain role in optimization. Although \tde's \tdegui{Matrix Tool}
+does not take into account these values in the current implementation,
+a reasonable parameter range is important for the \tdegui{Parameter Adjustment Window}.
+
+\begin{lstlisting}[language=mycpp,tabsize=8]
+// returns range for adjustable double parameters...
+virtual bool getParameterRange(	const char *identifier,
+				double &a, double &b) = 0;
+\end{lstlisting}
+\paragraph{Modifying parameter values}
+The following four methods are used for setting the value of a parameter.
+There are seven pre-defined parameter names, and every plugin class must be able to
+understand them. These parameters are focal length, filmback width and height,
+lens center offset $x$ and $y$, and pixel aspect. Since each distortion model
+has double parameters (at least the seven mentioned before), the method for
+double parameters is pure virtual, i.e. it must be implemented, while the others
+are only virtual. If your model does not have {\tt int}, {\tt toggle}, {\tt string} or {\tt file}
+parameters, you can simply ignore them.
+\begin{lstlisting}[language=mycpp,tabsize=8]
+// set parameter values...
+// parameters predefined by 3DE4:
+// 	"tde4_focal_length_cm", "tde4_filmback_width_cm", "tde4_filmback_height_cm",
+//	"tde4_lens_center_offset_x_cm", "tde4_lens_center_offset_y_cm", "tde4_pixel_aspect",
+//	"tde4_custom_focus_distance_cm"
+virtual bool setParameterValue(const char *identifier, double v) = 0;
+virtual bool setParameterValue(const char *identifier, char *v)
+	{ return false; }
+virtual bool setParameterValue(const char *identifier, int v)
+	{ return false; }
+virtual bool setParameterValue(const char *identifier, bool v)
+	{ return false; }
+\end{lstlisting}
+\paragraph{Preparing the model}
+The following method must be called, whenever one or more parameters have been changed.
+Some distortion models may require preparations when one or more parameters
+have been changed. These are done within this method.
+\begin{lstlisting}[language=mycpp,tabsize=8]
+// prepare the current set of parameters...
+virtual bool initializeParameters() = 0;
+\end{lstlisting}
+%
+\paragraph{\Jacobi-Matrix}
+The following method calculates the \Jacobi-Matrix by means of difference quotients.
+If you know the analytic form of this matrix, please implement this method in your derived class.
+We use this in order to generate export data for compositing systems.
+\begin{lstlisting}[language=mycpp,tabsize=8]
+virtual bool getJacobianMatrix(	double x0, double y0,
+	double &m00, double &m01, double &m10, double &m11) {...}
+\end{lstlisting}
+%
+\paragraph{Remove and apply lens distortion}
+Finally, there are three methods which apply or remove lens distortion from a point.
+In \tde, we assume, that removing distortion from a point is a {\it simple} function
+in the sense that it can be done non-iteratively. At least, if it is done iteratively
+no initial values are required. All built-in polynomial models of \tde\ are constructed
+this way. On the other hand, even the simplest polynomial models can only be inverted
+by using an iterative function, which requires good initial values.
+Therefore, there is only one method {\tt undistort()}, while {\tt distort()} comes in two
+flavours: one without initial values and one that demands initial values.
+\tde\ will use the initial value version whenever possible. If your model does not need
+initial values for applying distortion, you may simply ignore the second version of this
+method (see default implementation below).
+\begin{lstlisting}[language=mycpp,tabsize=8]
+// warp/unwarp 2D points...
+virtual bool undistort(	double x0, double y0,
+			double &x1, double &y1) = 0;
+virtual bool distort(	double x0, double y0,
+			double &x1, double &y1) = 0;
+virtual bool distort(	double x0, double y0,
+			double x1_start, double y1_start,
+			double &x1, double &y1)
+	{ return(distort(x0,y0,x1,y1)); }
+\end{lstlisting}
+The point $(x_0,y_0)$ passed to either of these methods as well as the resulting point $(x_1,y_1)$
+are given/calculated in unit coordinates as described in section \ref{UnitCoordinates}.
+
+\subsection{Building a compositing node}
+
+\subsubsection{Classes}
+Let us assume, the compositing node is represented by some class {\tt NODE}.
+In principle, there are several ways to connect {\tt NODE} to the distortion models.
+\begin{enumerate}
+\item Implement the mathematics from scratch in {\tt NODE}.
+\item Implement a distortion class, derived from {\tt ldpk::general\_distortion\_base}
+and use it as member in {\tt NODE}.
+\item Implement a complete \tde-plugin, based on {\tt tde4\_ld\_plugin}
+and use it as member in {\tt NODE} (or even load it dynamically!?).
+\end{enumerate}
+\begin{figure}[ht]
+\centering
+\includegraphics[width=10cm]{compositing_node_classes.eps}
+\caption{Compositing node}
+\label{fig:CompositingNodeClasses}
+\end{figure}
+The third method has the advantage, that {\bf once you have done this, it works for all plugins},
+since the plugin base class enforces a common API for all distortion models.
+In the following we will assume that in fact all warping and unwarping is done by a plugin class within {\tt NODE}.
+The plugin classes for all built-in models of \tde\ are part of the LDPK.
+
+\subsubsection{Unit coordinates and pixel coordinates}
+In developing a compositing node, implementation details will depend on the
+specifications of the compositing system. But it is very likely, that we will
+have to deal with some kind of pixel-based coordinate system, and for this case
+we should discuss the transformation between unit coordinates as used in the LDPK plugin API
+and pixel coordinates as used in image processing.
+For simplicity we shall assume, that the origin of the pixel coordinates is the lower left
+pixel. The data in an image file do not necessarily coincide with the image data
+relevant for processing. The situtation may be as described in fig.~\ref{fig:ImageAndSubimage}
+\begin{figure}[ht]
+\centering
+\includegraphics[width=10cm]{image_and_subimage.eps}
+\caption{Image file and image data}
+\label{fig:ImageAndSubimage}
+\end{figure}
+Filmback width and filmback height correspond to width and height
+of the subimage, not to width and height of the image file.
+When we deal with pixel positions in the following,
+we {\em always} talk about pixel positions with respect to the subimage.
+This is important, because otherwise
+distortion will not be removed or applied correctly.
+
+
+
+Let us assume the subimage of the image, that represents the filmback has a size of
+\begin{equation}
+\wfbpx\times\hfbpx.
+\end{equation}
+
+
+
+A single pixel, like e.g. $(0,0)$ in the figure is some color information
+{\em associated to the center} of a (by definition) square-shaped area.
+So, a pixel $(\xpx,\ypx)$ is mapped from unit coordinates $(\xunit,\yunit)$
+by the following mapping:
+\begin{align}
+\label{eq:DefinitionUnitToPx}
+\xpx &= \xunit \wfbpx - \frac 1 2\nonumber\\
+\ypx &= \yunit \hfbpx - \frac 1 2
+\end{align}
+The inverse mapping is:
+\begin{align}
+\label{eq:DefinitionPxToUnit}
+\xunit &= \frac {\xpx + \frac 1 2} {\wfbpx}\nonumber\\
+\yunit &= \frac {\ypx + \frac 1 2} {\hfbpx}.
+\end{align}
+We denote the mapping from unit to pixel coordinates and its inverse by
+\begin{equation}
+\unittopx \text{\ and \ } \pxtounit
+\end{equation}
+
+\subsubsection{Removing and applying lens distortion}
+Now, the aim of an image processor is to calculate the pixel $(\xpx,\ypx)$ of the target image.
+We would like to use the inverse distortion mapping $g^{-1}$ in order
+to find out, from which pixels the color at $(\xpx,\ypx)$ has to be
+mixed, as already shown in fig.\ref{fig:MappingAndInverseMapping}.
+In order to do this, we have to transform the inverse distortion function
+from unit coordinates to pixel coordinates. Let $\gunit^{-1}$ be the inverse
+distortion function in unit coordinates, i.e. as defined in the LDPK plugin.
+Then the inverse distortion function in pixel space is
+\begin{equation}
+\gpx^{-1} = \unittopx \circ \gunit^{-1} \circ \pxtounit,
+\end{equation}
+or in words: map from pixel to unit coordinates, apply the inverse plugin distortion function
+and map back to pixel coordinates. Similar, applying distortion to an image in pixel space is done with
+\begin{equation}
+\gpx = \unittopx \circ \gunit \circ \pxtounit,
+\end{equation}
+When you implement an image processor, your pixel positions $(\xpx,\ypx)$ will probably be pairs of
+integer values. The result after applying $\gpx^{-1}$ however will in general be a pair of real numbers,
+the non-integer part of which is used to interpolate between neighbouring pixels in the original image.
+This is most likely done by the compositing system you are writing the node for.
+
+\subsubsection{Resize and reapply}
+In \warp, \sdv's image processing tool, several modes for removing or applying lens distortion are available.
+If you implement a compositing node, it might be helpful to describe, how these modes are implemented.
+A workflow which is occasionally asked for by users is the following:
+\begin{enumerate}
+\item Given a sequence of original, distorted images, \warp\ is used to remove distortion.
+\item The undistorted sequence is used in compositing.
+\item \warp\ is then used to re-apply distortion.
+\end{enumerate}
+If this is done without modifying the size of the image, undefined (i.e. black) areas occur at the edge
+of the image, because removing lens distortion usually {\em magnifies} the image
+content\footnote{More precise, in a small area around lens center the image remains unchanged,
+while towards the edge it is stretched.}. Then some parts of the content are lost.
+Therefore \warp\ is able to {\em resize} the image while removing distortion.
+In the following, we describe how this is done.
+\paragraph{Resize}
+\begin{figure}[ht]
+\centering
+\includegraphics[width=10cm]{resize.eps}
+\caption{Resize and reapply, details}
+\label{fig:ResizeAndReapply}
+\end{figure}
+Fig.~\ref{fig:ImageAndSubimage} shows the original content (dark green area).
+Now, we imagine that removing distorion required some additional space (light green area).
+The outer box, i.e. the resized area is determined by two conditions:
+\begin{enumerate}
+\item The undistorted content is inside the resized area.
+\item The lens center is exactly the center of the resize area.
+\end{enumerate}
+The first of these conditions is clear: we do not want to lose any image content.
+The second condition has more technical reasons: after removing lens distortion
+we do not know the position of lens center with respect to the resized image.
+Therefore we place it at a special position, namely the image center.
+\begin{figure}[ht]
+\centering
+\includegraphics[width=12.5cm]{rrr_workflow.eps}
+\caption{Resize and reapply in \warp}
+\label{fig:RRRWorkflow}
+\end{figure}
+\paragraph{Reapply}
+After removing lens distortion with resizing we have a new image with size
+$\wresizepx\times\hresizepx$.
+Since we defined a distortion function as invertible, it should be possible
+to retrieve the original image.
+The problem is: expressed in real length units, our resized image has
+a different filmback.
+A distortion function for retrieving the original image would have
+completely different parameters.
+The solution is to redefine the pixel-based coordinate system.
+For our example in fig.~\ref{fig:ResizeAndReapply} this means,
+instead of pixel coordinates [0,0] to [15,9] we use pixel coordinates [-1,-1] to [14,8].
+By doing so, we can avoid dealing with the (unreal) filmback of the resized image,
+and we do not need to keep track of the lens center.
+The reason for us to handle resizing and reapplying like this is
+more or less induced by \warp. You may handle this according to your needs
+in a different way for your compositing node.
+%
+\begin{appendix}
+\section{Table of symbols}
+\begin{tabular}{lll}
+$\delta_{\mu\nu}$ & {\em delta} & \Kronecker-delta \\
+$a\cdot b$ & {\em dot} & Inner product of two vectors \\
+$a\otimes b$ & {\em dyadic} & Dyadic product of two vectors \\
+$\fcm$ & & Focal length in centimeter \\
+$\gpx$ & & Distortion function for pixel coordinates (compositing) \\
+$\gunit$ & & Distortion function for unit coordinates (plugin API) \\
+$I$ & & Unit interval [0,1] \\
+$\norm{\cdots}$ & {\em norm} & \Euclidian\ norm of a vector \\
+$\cmtounit$ & {\em psi} & Eq.~\eqref{eq:DefinitionCmToUnit} Map from centimeter to unit coordinates \\
+$\unittocm$ & {\em psi} & Eq.~\eqref{eq:DefinitionUnitToCm} Map from unit coordinates to centimeter \\
+$\dntounit$ & {\em psi} & Eq.~\eqref{eq:DefinitionDnToUnit} Map from diag norm to unit coordinates \\
+$\unittodn$ & {\em psi} & Eq.~\eqref{eq:DefinitionUnitToDn} Map from unit to diag norm coordinates \\
+$\cmtodn$ & {\em psi} & Eq.~\eqref{eq:DefinitionCmToDn} Map from centimeter to diag-norm coordinates \\
+$\dntocm$ & {\em psi} & Eq.~\eqref{eq:DefinitionDnToCm} Map from diag-norm coordinates to centimeter \\
+$\unittopx$ & {\em psi} & Eq.~\eqref{eq:DefinitionUnitToPx} Map from unit coordinates to pixel coordinates \\
+$\pxtounit$ & {\em psi} & Eq.~\eqref{eq:DefinitionPxToUnit} Map from pixel coordinates to unit coordinates \\
+$\Rgen$ & & The real numbers \\
+$\Rpow{n}$ & & The space of real-valued $n$-tuples \\
+$\rfbcm$ & & Filmback diagonal radius in centimeter \\
+$\rpa$ & & Pixel aspect (ratio) \\
+$\wfbcm$,$\hfbcm$ & & Filmback width and height in centimeter \\
+$\wfbpx$,$\hfbpx$ & & Filmback width and height in pixel \\
+$\wresizepx$,$\hresizepx$ & & Resized filmback width and height in pixel \\
+$\xlcocm,\ylcocm$ & & Lens center offset in centimeter \\
+$\xlcounit,\ylcounit$ & & Lens center offset in unit coordinates \\
+$\xcm,\ycm$ & & A point in centimeter \\
+$\xdn,\ydn$ & & A point in diagonally normalized coordinates \\
+$\xpx,\ypx$ & & A point in pixel coordinates \\
+$\xunit,\yunit$ & & A point in unit coordinates \\
+\end{tabular}
+\end{appendix}
+\begin{thebibliography}{0cm}
+\bibitem{svgtooffice} Bernhard Haumacher: {\tt svg2office}, {\tt http://www.haumacher.de/svg-import/}, last verified: 2011-02-21
+\end{thebibliography}
+
+\end{document}
+
+

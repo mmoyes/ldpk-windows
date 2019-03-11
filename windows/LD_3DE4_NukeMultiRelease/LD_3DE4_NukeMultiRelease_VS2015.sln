@@ -1,0 +1,118 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "LD_3DE_Classic_LD_Model", "LD_3DE_Classic_LD_Model\LD_3DE_Classic_LD_Model.vcxproj", "{AA9058CC-1299-4418-AB68-1113988A1B6B}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "LD_3DE4_All_Parameter_Types", "LD_3DE4_All_Parameter_Types\LD_3DE4_All_Parameter_Types.vcxproj", "{CFB254E6-BD2E-4B8D-9751-BF066AA1E542}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "LD_3DE4_Anamorphic_Degree_6", "LD_3DE4_Anamorphic_Degree_6\LD_3DE4_Anamorphic_Degree_6.vcxproj", "{31E124B7-D1CD-45B6-B6ED-25E096780AC5}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "LD_3DE4_Anamorphic_Standard_Degree_4", "LD_3DE4_Anamorphic_Standard_Degree_4\LD_3DE4_Anamorphic_Standard_Degree_4.vcxproj", "{EA3BDBC3-0513-4D00-8888-2441EF46C58D}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "LD_3DE4_Radial_Fisheye_Degree_8", "LD_3DE4_Radial_Fisheye_Degree_8\LD_3DE4_Radial_Fisheye_Degree_8.vcxproj", "{3E4B2522-00CE-490C-B35C-CB625385F36F}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "LD_3DE4_Radial_Standard_Degree_4", "LD_3DE4_Radial_Standard_Degree_4\LD_3DE4_Radial_Standard_Degree_4.vcxproj", "{90A9A492-3E12-4C99-9BDB-E74F67479A86}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "LD_3DE4_Anamorphic_Rescaled_Degree_4", "LD_3DE4_Anamorphic_Rescaled_Degree_4\LD_3DE4_Anamorphic_Rescaled_Degree_4.vcxproj", "{5B7A3DF9-2F9C-497D-ABFD-3CAAA6990FDE}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Release-Nuke10.0|x64 = Release-Nuke10.0|x64
+		Release-Nuke10.5|x64 = Release-Nuke10.5|x64
+		Release-Nuke11.0|x64 = Release-Nuke11.0|x64
+		Release-Nuke11.1|x64 = Release-Nuke11.1|x64
+		Release-Nuke11.2|x64 = Release-Nuke11.2|x64
+		Release-Nuke11.3|x64 = Release-Nuke11.3|x64
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{AA9058CC-1299-4418-AB68-1113988A1B6B}.Release-Nuke10.0|x64.ActiveCfg = Release-Nuke10.0|x64
+		{AA9058CC-1299-4418-AB68-1113988A1B6B}.Release-Nuke10.0|x64.Build.0 = Release-Nuke10.0|x64
+		{AA9058CC-1299-4418-AB68-1113988A1B6B}.Release-Nuke10.5|x64.ActiveCfg = Release-Nuke10.5|x64
+		{AA9058CC-1299-4418-AB68-1113988A1B6B}.Release-Nuke10.5|x64.Build.0 = Release-Nuke10.5|x64
+		{AA9058CC-1299-4418-AB68-1113988A1B6B}.Release-Nuke11.0|x64.ActiveCfg = Release-Nuke11.0|x64
+		{AA9058CC-1299-4418-AB68-1113988A1B6B}.Release-Nuke11.0|x64.Build.0 = Release-Nuke11.0|x64
+		{AA9058CC-1299-4418-AB68-1113988A1B6B}.Release-Nuke11.1|x64.ActiveCfg = Release-Nuke11.1|x64
+		{AA9058CC-1299-4418-AB68-1113988A1B6B}.Release-Nuke11.1|x64.Build.0 = Release-Nuke11.1|x64
+		{AA9058CC-1299-4418-AB68-1113988A1B6B}.Release-Nuke11.2|x64.ActiveCfg = Release-Nuke11.2|x64
+		{AA9058CC-1299-4418-AB68-1113988A1B6B}.Release-Nuke11.2|x64.Build.0 = Release-Nuke11.2|x64
+		{AA9058CC-1299-4418-AB68-1113988A1B6B}.Release-Nuke11.3|x64.ActiveCfg = Release-Nuke11.3|x64
+		{AA9058CC-1299-4418-AB68-1113988A1B6B}.Release-Nuke11.3|x64.Build.0 = Release-Nuke11.3|x64
+		{CFB254E6-BD2E-4B8D-9751-BF066AA1E542}.Release-Nuke10.0|x64.ActiveCfg = Release-Nuke10.0|x64
+		{CFB254E6-BD2E-4B8D-9751-BF066AA1E542}.Release-Nuke10.0|x64.Build.0 = Release-Nuke10.0|x64
+		{CFB254E6-BD2E-4B8D-9751-BF066AA1E542}.Release-Nuke10.5|x64.ActiveCfg = Release-Nuke10.5|x64
+		{CFB254E6-BD2E-4B8D-9751-BF066AA1E542}.Release-Nuke10.5|x64.Build.0 = Release-Nuke10.5|x64
+		{CFB254E6-BD2E-4B8D-9751-BF066AA1E542}.Release-Nuke11.0|x64.ActiveCfg = Release-Nuke11.0|x64
+		{CFB254E6-BD2E-4B8D-9751-BF066AA1E542}.Release-Nuke11.0|x64.Build.0 = Release-Nuke11.0|x64
+		{CFB254E6-BD2E-4B8D-9751-BF066AA1E542}.Release-Nuke11.1|x64.ActiveCfg = Release-Nuke11.1|x64
+		{CFB254E6-BD2E-4B8D-9751-BF066AA1E542}.Release-Nuke11.1|x64.Build.0 = Release-Nuke11.1|x64
+		{CFB254E6-BD2E-4B8D-9751-BF066AA1E542}.Release-Nuke11.2|x64.ActiveCfg = Release-Nuke11.2|x64
+		{CFB254E6-BD2E-4B8D-9751-BF066AA1E542}.Release-Nuke11.2|x64.Build.0 = Release-Nuke11.2|x64
+		{CFB254E6-BD2E-4B8D-9751-BF066AA1E542}.Release-Nuke11.3|x64.ActiveCfg = Release-Nuke11.3|x64
+		{CFB254E6-BD2E-4B8D-9751-BF066AA1E542}.Release-Nuke11.3|x64.Build.0 = Release-Nuke11.3|x64
+		{31E124B7-D1CD-45B6-B6ED-25E096780AC5}.Release-Nuke10.0|x64.ActiveCfg = Release-Nuke10.0|x64
+		{31E124B7-D1CD-45B6-B6ED-25E096780AC5}.Release-Nuke10.0|x64.Build.0 = Release-Nuke10.0|x64
+		{31E124B7-D1CD-45B6-B6ED-25E096780AC5}.Release-Nuke10.5|x64.ActiveCfg = Release-Nuke10.5|x64
+		{31E124B7-D1CD-45B6-B6ED-25E096780AC5}.Release-Nuke10.5|x64.Build.0 = Release-Nuke10.5|x64
+		{31E124B7-D1CD-45B6-B6ED-25E096780AC5}.Release-Nuke11.0|x64.ActiveCfg = Release-Nuke11.0|x64
+		{31E124B7-D1CD-45B6-B6ED-25E096780AC5}.Release-Nuke11.0|x64.Build.0 = Release-Nuke11.0|x64
+		{31E124B7-D1CD-45B6-B6ED-25E096780AC5}.Release-Nuke11.1|x64.ActiveCfg = Release-Nuke11.1|x64
+		{31E124B7-D1CD-45B6-B6ED-25E096780AC5}.Release-Nuke11.1|x64.Build.0 = Release-Nuke11.1|x64
+		{31E124B7-D1CD-45B6-B6ED-25E096780AC5}.Release-Nuke11.2|x64.ActiveCfg = Release-Nuke11.2|x64
+		{31E124B7-D1CD-45B6-B6ED-25E096780AC5}.Release-Nuke11.2|x64.Build.0 = Release-Nuke11.2|x64
+		{31E124B7-D1CD-45B6-B6ED-25E096780AC5}.Release-Nuke11.3|x64.ActiveCfg = Release-Nuke11.3|x64
+		{31E124B7-D1CD-45B6-B6ED-25E096780AC5}.Release-Nuke11.3|x64.Build.0 = Release-Nuke11.3|x64
+		{EA3BDBC3-0513-4D00-8888-2441EF46C58D}.Release-Nuke10.0|x64.ActiveCfg = Release-Nuke10.0|x64
+		{EA3BDBC3-0513-4D00-8888-2441EF46C58D}.Release-Nuke10.0|x64.Build.0 = Release-Nuke10.0|x64
+		{EA3BDBC3-0513-4D00-8888-2441EF46C58D}.Release-Nuke10.5|x64.ActiveCfg = Release-Nuke10.5|x64
+		{EA3BDBC3-0513-4D00-8888-2441EF46C58D}.Release-Nuke10.5|x64.Build.0 = Release-Nuke10.5|x64
+		{EA3BDBC3-0513-4D00-8888-2441EF46C58D}.Release-Nuke11.0|x64.ActiveCfg = Release-Nuke11.0|x64
+		{EA3BDBC3-0513-4D00-8888-2441EF46C58D}.Release-Nuke11.0|x64.Build.0 = Release-Nuke11.0|x64
+		{EA3BDBC3-0513-4D00-8888-2441EF46C58D}.Release-Nuke11.1|x64.ActiveCfg = Release-Nuke11.1|x64
+		{EA3BDBC3-0513-4D00-8888-2441EF46C58D}.Release-Nuke11.1|x64.Build.0 = Release-Nuke11.1|x64
+		{EA3BDBC3-0513-4D00-8888-2441EF46C58D}.Release-Nuke11.2|x64.ActiveCfg = Release-Nuke11.2|x64
+		{EA3BDBC3-0513-4D00-8888-2441EF46C58D}.Release-Nuke11.2|x64.Build.0 = Release-Nuke11.2|x64
+		{EA3BDBC3-0513-4D00-8888-2441EF46C58D}.Release-Nuke11.3|x64.ActiveCfg = Release-Nuke11.3|x64
+		{EA3BDBC3-0513-4D00-8888-2441EF46C58D}.Release-Nuke11.3|x64.Build.0 = Release-Nuke11.3|x64
+		{3E4B2522-00CE-490C-B35C-CB625385F36F}.Release-Nuke10.0|x64.ActiveCfg = Release-Nuke10.0|x64
+		{3E4B2522-00CE-490C-B35C-CB625385F36F}.Release-Nuke10.0|x64.Build.0 = Release-Nuke10.0|x64
+		{3E4B2522-00CE-490C-B35C-CB625385F36F}.Release-Nuke10.5|x64.ActiveCfg = Release-Nuke10.5|x64
+		{3E4B2522-00CE-490C-B35C-CB625385F36F}.Release-Nuke10.5|x64.Build.0 = Release-Nuke10.5|x64
+		{3E4B2522-00CE-490C-B35C-CB625385F36F}.Release-Nuke11.0|x64.ActiveCfg = Release-Nuke11.0|x64
+		{3E4B2522-00CE-490C-B35C-CB625385F36F}.Release-Nuke11.0|x64.Build.0 = Release-Nuke11.0|x64
+		{3E4B2522-00CE-490C-B35C-CB625385F36F}.Release-Nuke11.1|x64.ActiveCfg = Release-Nuke11.1|x64
+		{3E4B2522-00CE-490C-B35C-CB625385F36F}.Release-Nuke11.1|x64.Build.0 = Release-Nuke11.1|x64
+		{3E4B2522-00CE-490C-B35C-CB625385F36F}.Release-Nuke11.2|x64.ActiveCfg = Release-Nuke11.2|x64
+		{3E4B2522-00CE-490C-B35C-CB625385F36F}.Release-Nuke11.2|x64.Build.0 = Release-Nuke11.2|x64
+		{3E4B2522-00CE-490C-B35C-CB625385F36F}.Release-Nuke11.3|x64.ActiveCfg = Release-Nuke11.3|x64
+		{3E4B2522-00CE-490C-B35C-CB625385F36F}.Release-Nuke11.3|x64.Build.0 = Release-Nuke11.3|x64
+		{90A9A492-3E12-4C99-9BDB-E74F67479A86}.Release-Nuke10.0|x64.ActiveCfg = Release-Nuke10.0|x64
+		{90A9A492-3E12-4C99-9BDB-E74F67479A86}.Release-Nuke10.0|x64.Build.0 = Release-Nuke10.0|x64
+		{90A9A492-3E12-4C99-9BDB-E74F67479A86}.Release-Nuke10.5|x64.ActiveCfg = Release-Nuke10.5|x64
+		{90A9A492-3E12-4C99-9BDB-E74F67479A86}.Release-Nuke10.5|x64.Build.0 = Release-Nuke10.5|x64
+		{90A9A492-3E12-4C99-9BDB-E74F67479A86}.Release-Nuke11.0|x64.ActiveCfg = Release-Nuke11.0|x64
+		{90A9A492-3E12-4C99-9BDB-E74F67479A86}.Release-Nuke11.0|x64.Build.0 = Release-Nuke11.0|x64
+		{90A9A492-3E12-4C99-9BDB-E74F67479A86}.Release-Nuke11.1|x64.ActiveCfg = Release-Nuke11.1|x64
+		{90A9A492-3E12-4C99-9BDB-E74F67479A86}.Release-Nuke11.1|x64.Build.0 = Release-Nuke11.1|x64
+		{90A9A492-3E12-4C99-9BDB-E74F67479A86}.Release-Nuke11.2|x64.ActiveCfg = Release-Nuke11.2|x64
+		{90A9A492-3E12-4C99-9BDB-E74F67479A86}.Release-Nuke11.2|x64.Build.0 = Release-Nuke11.2|x64
+		{90A9A492-3E12-4C99-9BDB-E74F67479A86}.Release-Nuke11.3|x64.ActiveCfg = Release-Nuke11.3|x64
+		{90A9A492-3E12-4C99-9BDB-E74F67479A86}.Release-Nuke11.3|x64.Build.0 = Release-Nuke11.3|x64
+		{5B7A3DF9-2F9C-497D-ABFD-3CAAA6990FDE}.Release-Nuke10.0|x64.ActiveCfg = Release-Nuke10.0|x64
+		{5B7A3DF9-2F9C-497D-ABFD-3CAAA6990FDE}.Release-Nuke10.0|x64.Build.0 = Release-Nuke10.0|x64
+		{5B7A3DF9-2F9C-497D-ABFD-3CAAA6990FDE}.Release-Nuke10.5|x64.ActiveCfg = Release-Nuke10.5|x64
+		{5B7A3DF9-2F9C-497D-ABFD-3CAAA6990FDE}.Release-Nuke10.5|x64.Build.0 = Release-Nuke10.5|x64
+		{5B7A3DF9-2F9C-497D-ABFD-3CAAA6990FDE}.Release-Nuke11.0|x64.ActiveCfg = Release-Nuke11.0|x64
+		{5B7A3DF9-2F9C-497D-ABFD-3CAAA6990FDE}.Release-Nuke11.0|x64.Build.0 = Release-Nuke11.0|x64
+		{5B7A3DF9-2F9C-497D-ABFD-3CAAA6990FDE}.Release-Nuke11.1|x64.ActiveCfg = Release-Nuke11.1|x64
+		{5B7A3DF9-2F9C-497D-ABFD-3CAAA6990FDE}.Release-Nuke11.1|x64.Build.0 = Release-Nuke11.1|x64
+		{5B7A3DF9-2F9C-497D-ABFD-3CAAA6990FDE}.Release-Nuke11.2|x64.ActiveCfg = Release-Nuke11.2|x64
+		{5B7A3DF9-2F9C-497D-ABFD-3CAAA6990FDE}.Release-Nuke11.2|x64.Build.0 = Release-Nuke11.2|x64
+		{5B7A3DF9-2F9C-497D-ABFD-3CAAA6990FDE}.Release-Nuke11.3|x64.ActiveCfg = Release-Nuke11.3|x64
+		{5B7A3DF9-2F9C-497D-ABFD-3CAAA6990FDE}.Release-Nuke11.3|x64.Build.0 = Release-Nuke11.3|x64
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

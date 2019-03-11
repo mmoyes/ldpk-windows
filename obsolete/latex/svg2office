@@ -1,0 +1,4 @@
+#!/bin/csh
+
+echo "Frontend fuer svg2office-xxx.jar"
+java -jar /usr/local/bin/svg2office-1.2.2.jar $1

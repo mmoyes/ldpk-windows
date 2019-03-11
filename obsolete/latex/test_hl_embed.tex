@@ -1,0 +1,191 @@
+\pagecolor{bgcolor}
+\noindent
+\ttfamily
+\hlstd{}\hldir{\#ifndef\ gld\textunderscore generic\textunderscore anamorphic\textunderscore distortion\textunderscore sdv}\hspace*{\fill}\\
+\hlstd{}\hldir{\#define\ gld\textunderscore generic\textunderscore anamorphic\textunderscore distortion\textunderscore sdv}\hspace*{\fill}\\
+\hlstd{}\hspace*{\fill}\\
+\hlslc{//!\ @file\ gld\textunderscore generic\textunderscore anamorphic\textunderscore distortion.h}\hspace*{\fill}\\
+\hlstd{}\hlslc{//!\ @brief\ A\ polynomial\ anamorphic\ distortion\ model\ of\ degree\ N\ (even).}\hspace*{\fill}\\
+\hlstd{}\hspace*{\fill}\\
+\hldir{\#include\ $<$generic\textunderscore lens\textunderscore distortion/gld\textunderscore generic\textunderscore distortion\textunderscore base.h$>$}\hspace*{\fill}\\
+\hlstd{}\hspace*{\fill}\\
+\hlslc{//!\ @brief\ N\ is\ the\ degree\ of\ the\ polynomial,\ even.}\hspace*{\fill}\\
+\hlstd{}\hlslc{//!\ VEC2\ is\ a\ float{-}valued,\ two{-}component\ vector\ type.}\hspace*{\fill}\\
+\hlstd{}\hlslc{//!\ The\ model\ has\ the\ following\ properties:}\hspace*{\fill}\\
+\hlstd{}\hlslc{//!\ {-}\ all\ monomials\ are\ products\ of\ even\ powers\ of\ x\ and\ y.}\hspace*{\fill}\\
+\hlstd{}\hlslc{//!\ {-}\ x{-}\ and\ y{-}\ direction\ have\ their\ own\ coefficients.}\hspace*{\fill}\\
+\hlstd{}\hlkwa{namespace\ }\hlstd{gld\hspace*{\fill}\\
+\ }\hlsym{\{}\hspace*{\fill}\\
+\hlstd{\ }\hlkwc{template\ }\hlstd{}\hlsym{$<$}\hlstd{}\hlkwc{class\ }\hlstd{VEC2}\hlsym{,}\hlstd{}\hlkwc{class\ }\hlstd{MAT2}\hlsym{,}\hlstd{}\hlkwb{int\ }\hlstd{N}\hlsym{$>$}\hspace*{\fill}\\
+\hlstd{\ }\hlkwc{class\ }\hlstd{generic\textunderscore anamorphic\textunderscore distortion}\hlsym{:}\hlstd{}\hlkwc{public\ }\hlstd{generic\textunderscore distortion\textunderscore base}\hlsym{$<$}\hlstd{VEC2}\hlsym{,}\hlstd{MAT2}\hlsym{$>$}\hspace*{\fill}\\
+\hlstd{}\hlstd{\ \ }\hlstd{}\hlsym{\{}\hspace*{\fill}\\
+\hlstd{\ }\hlkwc{public}\hlstd{}\hlsym{:}\hspace*{\fill}\\
+\hlstd{}\hlstd{\ \ }\hlstd{}\hlkwc{typedef\ }\hlstd{VEC2\ vec2\textunderscore type}\hlsym{;}\hspace*{\fill}\\
+\hlstd{\ }\hlkwc{private}\hlstd{}\hlsym{:}\hspace*{\fill}\\
+\hlstd{}\hlslc{//\ We\ represent\ the\ coefficients\ by\ a\ zwo{-}dimensional\ array.}\hspace*{\fill}\\
+\hlstd{}\hlslc{//\ The\ upper\ right\ triangle\ including\ diagonal\ is\ used\ for\ the\ model,\ all\ others\ are\ ignored.}\hspace*{\fill}\\
+\hlstd{}\hlslc{//\ For\ the\ generic\ anamorphic\ model,\ we\ have\ different\ values\ in\ x{-}\ and\ y{-}\ direction.}\hspace*{\fill}\\
+\hlstd{}\hlstd{\ \ }\hlstd{}\hlkwb{double\ }\hlstd{\textunderscore cx}\hlsym{{[}(}\hlstd{N\ }\hlsym{/\ }\hlstd{}\hlnum{2}\hlstd{}\hlsym{)\ +\ }\hlstd{}\hlnum{1}\hlstd{}\hlsym{{]}{[}(}\hlstd{N\ }\hlsym{/\ }\hlstd{}\hlnum{2}\hlstd{}\hlsym{)\ +\ }\hlstd{}\hlnum{1}\hlstd{}\hlsym{{]};}\hspace*{\fill}\\
+\hlstd{}\hlstd{\ \ }\hlstd{}\hlkwb{double\ }\hlstd{\textunderscore cy}\hlsym{{[}(}\hlstd{N\ }\hlsym{/\ }\hlstd{}\hlnum{2}\hlstd{}\hlsym{)\ +\ }\hlstd{}\hlnum{1}\hlstd{}\hlsym{{]}{[}(}\hlstd{N\ }\hlsym{/\ }\hlstd{}\hlnum{2}\hlstd{}\hlsym{)\ +\ }\hlstd{}\hlnum{1}\hlstd{}\hlsym{{]};}\hspace*{\fill}\\
+\hlstd{\hspace*{\fill}\\
+\ }\hlkwc{public}\hlstd{}\hlsym{:}\hspace*{\fill}\\
+\hlstd{}\hlstd{\ \ }\hlstd{}\hlkwd{generic\textunderscore anamorphic\textunderscore distortion}\hlstd{}\hlsym{()}\hspace*{\fill}\\
+\hlstd{}\hlstd{\ \ \ }\hlstd{}\hlsym{\{}\hspace*{\fill}\\
+\hlstd{}\hlslc{//\ Default\ is\ the\ identity.}\hspace*{\fill}\\
+\hlstd{}\hlstd{\ \ \ }\hlstd{}\hlkwa{for}\hlstd{}\hlsym{(}\hlstd{}\hlkwb{int\ }\hlstd{i\textunderscore phi\ }\hlsym{=\ }\hlstd{}\hlnum{0}\hlstd{}\hlsym{;}\hlstd{i\textunderscore phi\ }\hlsym{$<$=\ }\hlstd{N}\hlsym{;}\hlstd{i\textunderscore phi\ }\hlsym{+=\ }\hlstd{}\hlnum{2}\hlstd{}\hlsym{)}\hspace*{\fill}\\
+\hlstd{}\hlstd{\ \ \ \ }\hlstd{}\hlsym{\{}\hspace*{\fill}\\
+\hlstd{}\hlstd{\ \ \ \ }\hlstd{}\hlkwa{for}\hlstd{}\hlsym{(}\hlstd{}\hlkwb{int\ }\hlstd{i\textunderscore r\ }\hlsym{=\ }\hlstd{}\hlnum{0}\hlstd{}\hlsym{;}\hlstd{i\textunderscore r\ }\hlsym{$<$=\ }\hlstd{N}\hlsym{;}\hlstd{i\textunderscore r\ }\hlsym{+=\ }\hlstd{}\hlnum{2}\hlstd{}\hlsym{)}\hspace*{\fill}\\
+\hlstd{}\hlstd{\ \ \ \ \ }\hlstd{}\hlsym{\{}\hspace*{\fill}\\
+\hlstd{}\hlstd{\ \ \ \ \ }\hlstd{}\hlkwd{cx}\hlstd{}\hlsym{(}\hlstd{i\textunderscore phi}\hlsym{,}\hlstd{i\textunderscore r}\hlsym{,}\hlstd{}\hlnum{0}\hlstd{}\hlsym{);}\hspace*{\fill}\\
+\hlstd{}\hlstd{\ \ \ \ \ }\hlstd{}\hlkwd{cy}\hlstd{}\hlsym{(}\hlstd{i\textunderscore phi}\hlsym{,}\hlstd{i\textunderscore r}\hlsym{,}\hlstd{}\hlnum{0}\hlstd{}\hlsym{);}\hspace*{\fill}\\
+\hlstd{}\hlstd{\ \ \ \ \ }\hlstd{}\hlsym{\}}\hspace*{\fill}\\
+\hlstd{}\hlstd{\ \ \ \ }\hlstd{}\hlsym{\}}\hspace*{\fill}\\
+\hlstd{}\hlstd{\ \ \ }\hlstd{\textunderscore cx}\hlsym{{[}}\hlstd{}\hlnum{0}\hlstd{}\hlsym{{]}{[}}\hlstd{}\hlnum{0}\hlstd{}\hlsym{{]}\ =\ }\hlstd{}\hlnum{1.0}\hlstd{}\hlsym{;}\hspace*{\fill}\\
+\hlstd{}\hlstd{\ \ \ }\hlstd{\textunderscore cy}\hlsym{{[}}\hlstd{}\hlnum{0}\hlstd{}\hlsym{{]}{[}}\hlstd{}\hlnum{0}\hlstd{}\hlsym{{]}\ =\ }\hlstd{}\hlnum{1.0}\hlstd{}\hlsym{;}\hspace*{\fill}\\
+\hlstd{}\hlstd{\ \ \ }\hlstd{}\hlsym{\}}\hspace*{\fill}\\
+\hlstd{}\hspace*{\fill}\\
+\hlslc{//\ The\ coefficients\ of\ the\ Generic\ Polynomial\ Model\ fulfill}\hspace*{\fill}\\
+\hlstd{}\hlslc{//\ the\ following\ conditions:}\hspace*{\fill}\\
+\hlstd{}\hlslc{//\ {-}\ Indices\ are\ even}\hspace*{\fill}\\
+\hlstd{}\hlslc{//\ {-}\ i\textunderscore r\ in\ {[}0,N{]}}\hspace*{\fill}\\
+\hlstd{}\hlslc{//\ {-}\ i\textunderscore r\ $>$=\ i\textunderscore phi}\hspace*{\fill}\\
+\hlstd{}\hlslc{//!\ x{-}direction}\hspace*{\fill}\\
+\hlstd{}\hlstd{\ \ }\hlstd{}\hlkwb{double\ }\hlstd{}\hlkwd{cx}\hlstd{}\hlsym{(}\hlstd{}\hlkwb{int\ }\hlstd{i\textunderscore phi}\hlsym{,}\hlstd{}\hlkwb{int\ }\hlstd{i\textunderscore r}\hlsym{)\ }\hlstd{}\hlkwb{const}\hspace*{\fill}\\
+\hlstd{}\hlstd{\ \ \ }\hlstd{}\hlsym{\{\ }\hlstd{}\hlkwa{return\ }\hlstd{\textunderscore cx}\hlsym{{[}}\hlstd{i\textunderscore phi\ }\hlsym{$>$$>$\ }\hlstd{}\hlnum{1}\hlstd{}\hlsym{{]}{[}}\hlstd{i\textunderscore r\ }\hlsym{$>$$>$\ }\hlstd{}\hlnum{1}\hlstd{}\hlsym{{]};\ \}}\hspace*{\fill}\\
+\hlstd{}\hlstd{\ \ }\hlstd{}\hlkwb{void\ }\hlstd{}\hlkwd{cx}\hlstd{}\hlsym{(}\hlstd{}\hlkwb{int\ }\hlstd{i\textunderscore phi}\hlsym{,}\hlstd{}\hlkwb{int\ }\hlstd{i\textunderscore r}\hlsym{,}\hlstd{}\hlkwb{double\ }\hlstd{c}\hlsym{)}\hspace*{\fill}\\
+\hlstd{}\hlstd{\ \ \ }\hlstd{}\hlsym{\{\ }\hlstd{\textunderscore cx}\hlsym{{[}}\hlstd{i\textunderscore phi\ }\hlsym{$>$$>$\ }\hlstd{}\hlnum{1}\hlstd{}\hlsym{{]}{[}}\hlstd{i\textunderscore r\ }\hlsym{$>$$>$\ }\hlstd{}\hlnum{1}\hlstd{}\hlsym{{]}\ =\ }\hlstd{c}\hlsym{;\ \}}\hspace*{\fill}\\
+\hlstd{}\hlslc{//!\ y{-}direction}\hspace*{\fill}\\
+\hlstd{}\hlstd{\ \ }\hlstd{}\hlkwb{double\ }\hlstd{}\hlkwd{cy}\hlstd{}\hlsym{(}\hlstd{}\hlkwb{int\ }\hlstd{i\textunderscore phi}\hlsym{,}\hlstd{}\hlkwb{int\ }\hlstd{i\textunderscore r}\hlsym{)\ }\hlstd{}\hlkwb{const}\hspace*{\fill}\\
+\hlstd{}\hlstd{\ \ \ }\hlstd{}\hlsym{\{\ }\hlstd{}\hlkwa{return\ }\hlstd{\textunderscore cy}\hlsym{{[}}\hlstd{i\textunderscore phi\ }\hlsym{$>$$>$\ }\hlstd{}\hlnum{1}\hlstd{}\hlsym{{]}{[}}\hlstd{i\textunderscore r\ }\hlsym{$>$$>$\ }\hlstd{}\hlnum{1}\hlstd{}\hlsym{{]};\ \}}\hspace*{\fill}\\
+\hlstd{}\hlstd{\ \ }\hlstd{}\hlkwb{void\ }\hlstd{}\hlkwd{cy}\hlstd{}\hlsym{(}\hlstd{}\hlkwb{int\ }\hlstd{i\textunderscore phi}\hlsym{,}\hlstd{}\hlkwb{int\ }\hlstd{i\textunderscore r}\hlsym{,}\hlstd{}\hlkwb{double\ }\hlstd{c}\hlsym{)}\hspace*{\fill}\\
+\hlstd{}\hlstd{\ \ \ }\hlstd{}\hlsym{\{\ }\hlstd{\textunderscore cy}\hlsym{{[}}\hlstd{i\textunderscore phi\ }\hlsym{$>$$>$\ }\hlstd{}\hlnum{1}\hlstd{}\hlsym{{]}{[}}\hlstd{i\textunderscore r\ }\hlsym{$>$$>$\ }\hlstd{}\hlnum{1}\hlstd{}\hlsym{{]}\ =\ }\hlstd{c}\hlsym{;\ \}}\hspace*{\fill}\\
+\hlstd{}\hspace*{\fill}\\
+\hlslc{//!\ @brief\ As\ usual,\ we\ define\ the\ distortion\ mapping\ in\ diagonally\ normalized\ coordinates,}\hspace*{\fill}\\
+\hlstd{}\hlslc{//!\ (hence\ the\ suffix\ \textunderscore dn).\ The\ operator\ expects,\ that\ p\textunderscore dn\ is\ already\ shifted\ so\ that}\hspace*{\fill}\\
+\hlstd{}\hlslc{//!\ the\ lens\ center\ is\ (0,0).}\hspace*{\fill}\\
+\hlstd{}\hlstd{\ \ }\hlstd{vec2\textunderscore type\ }\hlkwc{operator}\hlstd{}\hlsym{()(}\hlstd{}\hlkwb{const\ }\hlstd{vec2\textunderscore type}\hlsym{\&\ }\hlstd{p\textunderscore dn}\hlsym{)\ }\hlstd{}\hlkwb{const}\hspace*{\fill}\\
+\hlstd{}\hlstd{\ \ \ }\hlstd{}\hlsym{\{}\hspace*{\fill}\\
+\hlstd{}\hlslc{//\ Our\ generic\ model\ is\ based\ on\ polar\ coordinates,}\hspace*{\fill}\\
+\hlstd{}\hlslc{//\ so\ we\ represent\ the\ point\ as\ radius\ and\ angle.}\hspace*{\fill}\\
+\hlstd{}\hlstd{\ \ \ }\hlstd{}\hlkwb{double\ }\hlstd{r\ }\hlsym{=\ }\hlstd{}\hlkwd{norm2}\hlstd{}\hlsym{(}\hlstd{p\textunderscore dn}\hlsym{);}\hspace*{\fill}\\
+\hlstd{}\hlstd{\ \ \ }\hlstd{}\hlkwb{double\ }\hlstd{phi\ }\hlsym{=\ }\hlstd{}\hlkwd{atan2}\hlstd{}\hlsym{(}\hlstd{p\textunderscore dn}\hlsym{{[}}\hlstd{}\hlnum{1}\hlstd{}\hlsym{{]},}\hlstd{p\textunderscore dn}\hlsym{{[}}\hlstd{}\hlnum{0}\hlstd{}\hlsym{{]});}\hspace*{\fill}\\
+\hlstd{}\hlstd{\ \ \ }\hlstd{vec2\textunderscore type\ q}\hlsym{;}\hspace*{\fill}\\
+\hlstd{}\hlslc{//\ We\ calculate\ powers\ of\ r\ in\ advance\ for\ better\ performance.}\hspace*{\fill}\\
+\hlstd{}\hlstd{\ \ \ }\hlstd{}\hlkwb{double\ }\hlstd{r\textunderscore pow}\hlsym{{[}}\hlstd{N\ }\hlsym{+\ }\hlstd{}\hlnum{1}\hlstd{}\hlsym{{]};}\hspace*{\fill}\\
+\hlstd{}\hlstd{\ \ \ }\hlstd{r\textunderscore pow}\hlsym{{[}}\hlstd{}\hlnum{0}\hlstd{}\hlsym{{]}\ =\ }\hlstd{}\hlnum{1.0}\hlstd{}\hlsym{;}\hspace*{\fill}\\
+\hlstd{}\hlstd{\ \ \ }\hlstd{}\hlkwa{for}\hlstd{}\hlsym{(}\hlstd{}\hlkwb{int\ }\hlstd{i\ }\hlsym{=\ }\hlstd{}\hlnum{2}\hlstd{}\hlsym{;}\hlstd{i\ }\hlsym{$<$\ }\hlstd{N\ }\hlsym{+\ }\hlstd{}\hlnum{1}\hlstd{}\hlsym{;}\hlstd{i\ }\hlsym{+=\ }\hlstd{}\hlnum{2}\hlstd{}\hlsym{)}\hspace*{\fill}\\
+\hlstd{}\hlstd{\ \ \ \ }\hlstd{}\hlsym{\{}\hspace*{\fill}\\
+\hlstd{}\hlstd{\ \ \ \ }\hlstd{r\textunderscore pow}\hlsym{{[}}\hlstd{i}\hlsym{{]}\ =\ (}\hlstd{r\ }\hlsym{{*}\ }\hlstd{r}\hlsym{)\ {*}\ }\hlstd{r\textunderscore pow}\hlsym{{[}}\hlstd{i\ }\hlsym{{-}\ }\hlstd{}\hlnum{2}\hlstd{}\hlsym{{]};}\hspace*{\fill}\\
+\hlstd{}\hlstd{\ \ \ \ }\hlstd{}\hlsym{\}}\hspace*{\fill}\\
+\hlstd{}\hlslc{//\ Evaluating\ the\ polynomial}\hspace*{\fill}\\
+\hlstd{}\hlstd{\ \ \ }\hlstd{}\hlkwa{for}\hlstd{}\hlsym{(}\hlstd{}\hlkwb{int\ }\hlstd{i\textunderscore phi\ }\hlsym{=\ }\hlstd{}\hlnum{0}\hlstd{}\hlsym{;}\hlstd{i\textunderscore phi\ }\hlsym{$<$=\ }\hlstd{N}\hlsym{;}\hlstd{i\textunderscore phi\ }\hlsym{+=\ }\hlstd{}\hlnum{2}\hlstd{}\hlsym{)}\hspace*{\fill}\\
+\hlstd{}\hlstd{\ \ \ \ }\hlstd{}\hlsym{\{}\hspace*{\fill}\\
+\hlstd{}\hlstd{\ \ \ \ }\hlstd{}\hlkwb{double\ }\hlstd{cos\textunderscore i\textunderscore phi\ }\hlsym{=\ }\hlstd{}\hlkwd{cos}\hlstd{}\hlsym{(}\hlstd{i\textunderscore phi\ }\hlsym{{*}\ }\hlstd{phi}\hlsym{);}\hspace*{\fill}\\
+\hlstd{}\hlstd{\ \ \ \ }\hlstd{}\hlkwa{for}\hlstd{}\hlsym{(}\hlstd{}\hlkwb{int\ }\hlstd{i\textunderscore r\ }\hlsym{=\ }\hlstd{i\textunderscore phi}\hlsym{;}\hlstd{i\textunderscore r\ }\hlsym{$<$=\ }\hlstd{N}\hlsym{;}\hlstd{i\textunderscore r\ }\hlsym{+=\ }\hlstd{}\hlnum{2}\hlstd{}\hlsym{)}\hspace*{\fill}\\
+\hlstd{}\hlstd{\ \ \ \ \ }\hlstd{}\hlsym{\{}\hspace*{\fill}\\
+\hlstd{}\hlslc{//\ That\ is\ coefficient\ times\ cosine\ times\ power\ of\ r.}\hspace*{\fill}\\
+\hlstd{}\hlstd{\ \ \ \ \ }\hlstd{q}\hlsym{{[}}\hlstd{}\hlnum{0}\hlstd{}\hlsym{{]}\ +=\ }\hlstd{}\hlkwd{cx}\hlstd{}\hlsym{(}\hlstd{i\textunderscore phi}\hlsym{,}\hlstd{i\textunderscore r}\hlsym{)\ {*}\ }\hlstd{cos\textunderscore i\textunderscore phi\ }\hlsym{{*}\ }\hlstd{r\textunderscore pow}\hlsym{{[}}\hlstd{i\textunderscore r}\hlsym{{]};}\hspace*{\fill}\\
+\hlstd{}\hlstd{\ \ \ \ \ }\hlstd{q}\hlsym{{[}}\hlstd{}\hlnum{1}\hlstd{}\hlsym{{]}\ +=\ }\hlstd{}\hlkwd{cy}\hlstd{}\hlsym{(}\hlstd{i\textunderscore phi}\hlsym{,}\hlstd{i\textunderscore r}\hlsym{)\ {*}\ }\hlstd{cos\textunderscore i\textunderscore phi\ }\hlsym{{*}\ }\hlstd{r\textunderscore pow}\hlsym{{[}}\hlstd{i\textunderscore r}\hlsym{{]};}\hspace*{\fill}\\
+\hlstd{}\hlstd{\ \ \ \ \ }\hlstd{}\hlsym{\}}\hspace*{\fill}\\
+\hlstd{}\hlstd{\ \ \ \ }\hlstd{}\hlsym{\}}\hspace*{\fill}\\
+\hlstd{}\hlstd{\ \ \ }\hlstd{}\hlkwa{return\ }\hlstd{}\hlkwd{vec2\textunderscore type}\hlstd{}\hlsym{(}\hlstd{p\textunderscore dn}\hlsym{{[}}\hlstd{}\hlnum{0}\hlstd{}\hlsym{{]}\ {*}\ }\hlstd{q}\hlsym{{[}}\hlstd{}\hlnum{0}\hlstd{}\hlsym{{]},}\hlstd{p\textunderscore dn}\hlsym{{[}}\hlstd{}\hlnum{1}\hlstd{}\hlsym{{]}\ {*}\ }\hlstd{q}\hlsym{{[}}\hlstd{}\hlnum{1}\hlstd{}\hlsym{{]});}\hspace*{\fill}\\
+\hlstd{}\hlstd{\ \ \ }\hlstd{}\hlsym{\}}\hspace*{\fill}\\
+\hlstd{}\hspace*{\fill}\\
+\hlslc{//!\ @brief\ Derivative\ wrt\ distortion\ coefficients.}\hspace*{\fill}\\
+\hlstd{}\hlslc{//!\ For\ performance\ reasons\ we\ calculate\ all\ derivatives\ simultaneously.}\hspace*{\fill}\\
+\hlstd{}\hlslc{//!\ g\ points\ to\ an\ array\ with\ (N\ /\ 2\ +\ 1)\ {*}\ (N\ /\ 2\ +\ 2)\ {-}\ 2\ Elements.}\hspace*{\fill}\\
+\hlstd{}\hlslc{//!\ That\ is\ 4\ for\ N=2,\ 10\ for\ N=4,\ 18\ for\ N=6.}\hspace*{\fill}\\
+\hlstd{}\hlstd{\ \ }\hlstd{}\hlkwb{void\ }\hlstd{}\hlkwd{derive}\hlstd{}\hlsym{(}\hlstd{std}\hlsym{::}\hlstd{vector}\hlsym{$<$}\hlstd{vec2\textunderscore type}\hlsym{$>$\&\ }\hlstd{g}\hlsym{,}\hlstd{}\hlkwb{const\ }\hlstd{vec2\textunderscore type}\hlsym{\&\ }\hlstd{p\textunderscore dn}\hlsym{)\ }\hlstd{}\hlkwb{const}\hspace*{\fill}\\
+\hlstd{}\hlstd{\ \ \ }\hlstd{}\hlsym{\{}\hspace*{\fill}\\
+\hlstd{}\hlslc{//\ Our\ generic\ model\ is\ based\ on\ polar\ coordinates,}\hspace*{\fill}\\
+\hlstd{}\hlslc{//\ so\ we\ represent\ the\ point\ as\ radius\ and\ angle.}\hspace*{\fill}\\
+\hlstd{}\hlstd{\ \ \ }\hlstd{}\hlkwb{double\ }\hlstd{r\ }\hlsym{=\ }\hlstd{}\hlkwd{norm2}\hlstd{}\hlsym{(}\hlstd{p\textunderscore dn}\hlsym{);}\hspace*{\fill}\\
+\hlstd{}\hlstd{\ \ \ }\hlstd{}\hlkwb{double\ }\hlstd{phi\ }\hlsym{=\ }\hlstd{}\hlkwd{atan2}\hlstd{}\hlsym{(}\hlstd{p\textunderscore dn}\hlsym{{[}}\hlstd{}\hlnum{1}\hlstd{}\hlsym{{]},}\hlstd{p\textunderscore dn}\hlsym{{[}}\hlstd{}\hlnum{0}\hlstd{}\hlsym{{]});}\hspace*{\fill}\\
+\hlstd{}\hlslc{//\ We\ calculate\ powers\ of\ r\ and\ cosine{-}terms\ in\ advance\ for\ better\ performance.}\hspace*{\fill}\\
+\hlstd{}\hlstd{\ \ \ }\hlstd{}\hlkwb{double\ }\hlstd{r\textunderscore pow}\hlsym{{[}}\hlstd{N\ }\hlsym{+\ }\hlstd{}\hlnum{1}\hlstd{}\hlsym{{]};}\hspace*{\fill}\\
+\hlstd{}\hlstd{\ \ \ }\hlstd{r\textunderscore pow}\hlsym{{[}}\hlstd{}\hlnum{0}\hlstd{}\hlsym{{]}\ =\ }\hlstd{}\hlnum{1.0}\hlstd{}\hlsym{;}\hspace*{\fill}\\
+\hlstd{}\hlstd{\ \ \ }\hlstd{}\hlkwa{for}\hlstd{}\hlsym{(}\hlstd{}\hlkwb{int\ }\hlstd{i\ }\hlsym{=\ }\hlstd{}\hlnum{2}\hlstd{}\hlsym{;}\hlstd{i\ }\hlsym{$<$\ }\hlstd{N\ }\hlsym{+\ }\hlstd{}\hlnum{1}\hlstd{}\hlsym{;}\hlstd{i\ }\hlsym{+=\ }\hlstd{}\hlnum{2}\hlstd{}\hlsym{)}\hspace*{\fill}\\
+\hlstd{}\hlstd{\ \ \ \ }\hlstd{}\hlsym{\{}\hspace*{\fill}\\
+\hlstd{}\hlstd{\ \ \ \ }\hlstd{r\textunderscore pow}\hlsym{{[}}\hlstd{i}\hlsym{{]}\ =\ (}\hlstd{r\ }\hlsym{{*}\ }\hlstd{r}\hlsym{)\ {*}\ }\hlstd{r\textunderscore pow}\hlsym{{[}}\hlstd{i\ }\hlsym{{-}\ }\hlstd{}\hlnum{2}\hlstd{}\hlsym{{]};}\hspace*{\fill}\\
+\hlstd{}\hlstd{\ \ \ \ }\hlstd{}\hlsym{\}}\hspace*{\fill}\\
+\hlstd{}\hlstd{\ \ \ }\hlstd{}\hlkwb{double\ }\hlstd{cos\textunderscore phi}\hlsym{{[}}\hlstd{N\ }\hlsym{+\ }\hlstd{}\hlnum{1}\hlstd{}\hlsym{{]};}\hspace*{\fill}\\
+\hlstd{}\hlstd{\ \ \ }\hlstd{}\hlkwa{for}\hlstd{}\hlsym{(}\hlstd{}\hlkwb{int\ }\hlstd{i\textunderscore phi\ }\hlsym{=\ }\hlstd{}\hlnum{0}\hlstd{}\hlsym{;}\hlstd{i\textunderscore phi\ }\hlsym{$<$\ }\hlstd{N\ }\hlsym{+\ }\hlstd{}\hlnum{1}\hlstd{}\hlsym{;}\hlstd{i\textunderscore phi\ }\hlsym{+=\ }\hlstd{}\hlnum{2}\hlstd{}\hlsym{)}\hspace*{\fill}\\
+\hlstd{}\hlstd{\ \ \ \ }\hlstd{}\hlsym{\{}\hspace*{\fill}\\
+\hlstd{}\hlstd{\ \ \ \ }\hlstd{cos\textunderscore phi}\hlsym{{[}}\hlstd{i\textunderscore phi}\hlsym{{]}\ =\ }\hlstd{}\hlkwd{cos}\hlstd{}\hlsym{(}\hlstd{i\textunderscore phi\ }\hlsym{{*}\ }\hlstd{phi}\hlsym{);}\hspace*{\fill}\\
+\hlstd{}\hlstd{\ \ \ \ }\hlstd{}\hlsym{\}}\hspace*{\fill}\\
+\hlstd{}\hspace*{\fill}\\
+\hlslc{//\ The\ order\ of\ coefficients\ is:\ 1.\ powers\ of\ r\ and\ 2.\ angular\ frequencies.}\hspace*{\fill}\\
+\hlstd{}\hlstd{\ \ \ }\hlstd{}\hlkwb{int\ }\hlstd{k\ }\hlsym{=\ }\hlstd{}\hlnum{0}\hlstd{}\hlsym{;}\hspace*{\fill}\\
+\hlstd{}\hlstd{\ \ \ }\hlstd{}\hlkwa{for}\hlstd{}\hlsym{(}\hlstd{}\hlkwb{int\ }\hlstd{i\textunderscore r\ }\hlsym{=\ }\hlstd{}\hlnum{0}\hlstd{}\hlsym{;}\hlstd{i\textunderscore r\ }\hlsym{$<$=\ }\hlstd{N}\hlsym{;}\hlstd{i\textunderscore r\ }\hlsym{+=\ }\hlstd{}\hlnum{2}\hlstd{}\hlsym{)}\hspace*{\fill}\\
+\hlstd{}\hlstd{\ \ \ \ }\hlstd{}\hlsym{\{}\hspace*{\fill}\\
+\hlstd{}\hlstd{\ \ \ \ }\hlstd{}\hlkwa{for}\hlstd{}\hlsym{(}\hlstd{}\hlkwb{int\ }\hlstd{i\textunderscore phi\ }\hlsym{=\ }\hlstd{}\hlnum{0}\hlstd{}\hlsym{;}\hlstd{i\textunderscore phi\ }\hlsym{$<$=\ }\hlstd{i\textunderscore r}\hlsym{;}\hlstd{i\textunderscore phi\ }\hlsym{+=\ }\hlstd{}\hlnum{2}\hlstd{}\hlsym{)}\hspace*{\fill}\\
+\hlstd{}\hlstd{\ \ \ \ \ }\hlstd{}\hlsym{\{}\hspace*{\fill}\\
+\hlstd{}\hlslc{//\ Omit\ (0,0)\ which\ is\ a\ constant}\hspace*{\fill}\\
+\hlstd{}\hlstd{\ \ \ \ \ }\hlstd{}\hlkwa{if}\hlstd{}\hlsym{(}\hlstd{i\textunderscore r\ }\hlsym{\textbar \textbar \ }\hlstd{i\textunderscore phi}\hlsym{)}\hspace*{\fill}\\
+\hlstd{}\hlstd{\ \ \ \ \ \ }\hlstd{}\hlsym{\{}\hspace*{\fill}\\
+\hlstd{}\hlslc{//\ Since\ the\ model\ is\ linear\ in\ each\ coefficient,\ derivatives\ are\ constants.}\hspace*{\fill}\\
+\hlstd{}\hlstd{\ \ \ \ \ \ }\hlstd{}\hlkwb{double\ }\hlstd{cr\ }\hlsym{=\ }\hlstd{cos\textunderscore phi}\hlsym{{[}}\hlstd{i\textunderscore phi}\hlsym{{]}\ {*}\ }\hlstd{r\textunderscore pow}\hlsym{{[}}\hlstd{i\textunderscore r}\hlsym{{]};}\hspace*{\fill}\\
+\hlstd{}\hlstd{\ \ \ \ \ \ }\hlstd{g}\hlsym{.}\hlstd{}\hlkwd{at}\hlstd{}\hlsym{(}\hlstd{k}\hlsym{++)\ =\ }\hlstd{}\hlkwd{vec2\textunderscore type}\hlstd{}\hlsym{(}\hlstd{p\textunderscore dn}\hlsym{{[}}\hlstd{}\hlnum{0}\hlstd{}\hlsym{{]}\ {*}\ }\hlstd{cr}\hlsym{,}\hlstd{}\hlnum{0}\hlstd{}\hlsym{);}\hspace*{\fill}\\
+\hlstd{}\hlslc{//\ We\ calculate\ at\ most\ the\ first\ n\ derivatives,\ where\ n\ is\ the\ size\ of\ g.}\hspace*{\fill}\\
+\hlstd{}\hlstd{\ \ \ \ \ \ }\hlstd{}\hlkwa{if}\hlstd{}\hlsym{(}\hlstd{k\ }\hlsym{==\ }\hlstd{g}\hlsym{.}\hlstd{}\hlkwd{size}\hlstd{}\hlsym{())\ }\hlstd{}\hlkwa{return}\hlstd{}\hlsym{;}\hspace*{\fill}\\
+\hlstd{\hspace*{\fill}\\
+}\hlstd{\ \ \ \ \ \ }\hlstd{g}\hlsym{.}\hlstd{}\hlkwd{at}\hlstd{}\hlsym{(}\hlstd{k}\hlsym{++)\ =\ }\hlstd{}\hlkwd{vec2\textunderscore type}\hlstd{}\hlsym{(}\hlstd{}\hlnum{0}\hlstd{}\hlsym{,}\hlstd{p\textunderscore dn}\hlsym{{[}}\hlstd{}\hlnum{1}\hlstd{}\hlsym{{]}\ {*}\ }\hlstd{cr}\hlsym{);}\hspace*{\fill}\\
+\hlstd{}\hlslc{//\ We\ calculate\ at\ most\ the\ first\ n\ derivatives,\ where\ n\ is\ the\ size\ of\ g.}\hspace*{\fill}\\
+\hlstd{}\hlstd{\ \ \ \ \ \ }\hlstd{}\hlkwa{if}\hlstd{}\hlsym{(}\hlstd{k\ }\hlsym{==\ }\hlstd{g}\hlsym{.}\hlstd{}\hlkwd{size}\hlstd{}\hlsym{())\ }\hlstd{}\hlkwa{return}\hlstd{}\hlsym{;}\hspace*{\fill}\\
+\hlstd{}\hlstd{\ \ \ \ \ \ }\hlstd{}\hlsym{\}}\hspace*{\fill}\\
+\hlstd{}\hlstd{\ \ \ \ \ }\hlstd{}\hlsym{\}}\hspace*{\fill}\\
+\hlstd{}\hlstd{\ \ \ \ }\hlstd{}\hlsym{\}}\hspace*{\fill}\\
+\hlstd{}\hlstd{\ \ \ }\hlstd{}\hlsym{\}}\hspace*{\fill}\\
+\hlstd{}\hlstd{\ \ }\hlstd{}\hlkwb{void\ }\hlstd{}\hlkwd{set\textunderscore coeff}\hlstd{}\hlsym{(}\hlstd{}\hlkwb{const\ double}\hlstd{}\hlsym{{*}\ }\hlstd{coeff}\hlsym{)}\hspace*{\fill}\\
+\hlstd{}\hlstd{\ \ \ }\hlstd{}\hlsym{\{}\hspace*{\fill}\\
+\hlstd{}\hlstd{\ \ \ }\hlstd{}\hlkwb{int\ }\hlstd{k\ }\hlsym{=\ }\hlstd{}\hlnum{0}\hlstd{}\hlsym{;}\hspace*{\fill}\\
+\hlstd{}\hlstd{\ \ \ }\hlstd{}\hlkwa{for}\hlstd{}\hlsym{(}\hlstd{}\hlkwb{int\ }\hlstd{i\textunderscore r\ }\hlsym{=\ }\hlstd{}\hlnum{0}\hlstd{}\hlsym{;}\hlstd{i\textunderscore r\ }\hlsym{$<$=\ }\hlstd{N}\hlsym{;}\hlstd{i\textunderscore r\ }\hlsym{+=\ }\hlstd{}\hlnum{2}\hlstd{}\hlsym{)}\hspace*{\fill}\\
+\hlstd{}\hlstd{\ \ \ \ }\hlstd{}\hlsym{\{}\hspace*{\fill}\\
+\hlstd{}\hlstd{\ \ \ \ }\hlstd{}\hlkwa{for}\hlstd{}\hlsym{(}\hlstd{}\hlkwb{int\ }\hlstd{i\textunderscore phi\ }\hlsym{=\ }\hlstd{}\hlnum{0}\hlstd{}\hlsym{;}\hlstd{i\textunderscore phi\ }\hlsym{$<$=\ }\hlstd{i\textunderscore r}\hlsym{;}\hlstd{i\textunderscore phi\ }\hlsym{+=\ }\hlstd{}\hlnum{2}\hlstd{}\hlsym{)}\hspace*{\fill}\\
+\hlstd{}\hlstd{\ \ \ \ \ }\hlstd{}\hlsym{\{}\hspace*{\fill}\\
+\hlstd{}\hlstd{\ \ \ \ \ }\hlstd{}\hlkwa{if}\hlstd{}\hlsym{(}\hlstd{i\textunderscore r\ }\hlsym{\textbar \textbar \ }\hlstd{i\textunderscore phi}\hlsym{)}\hspace*{\fill}\\
+\hlstd{}\hlstd{\ \ \ \ \ \ }\hlstd{}\hlsym{\{}\hspace*{\fill}\\
+\hlstd{}\hlstd{\ \ \ \ \ \ }\hlstd{}\hlkwd{cx}\hlstd{}\hlsym{(}\hlstd{i\textunderscore phi}\hlsym{,}\hlstd{i\textunderscore r}\hlsym{,}\hlstd{coeff}\hlsym{{[}}\hlstd{k}\hlsym{++{]});}\hspace*{\fill}\\
+\hlstd{}\hlstd{\ \ \ \ \ \ }\hlstd{}\hlkwd{cy}\hlstd{}\hlsym{(}\hlstd{i\textunderscore phi}\hlsym{,}\hlstd{i\textunderscore r}\hlsym{,}\hlstd{coeff}\hlsym{{[}}\hlstd{k}\hlsym{++{]});}\hspace*{\fill}\\
+\hlstd{}\hlstd{\ \ \ \ \ \ }\hlstd{}\hlsym{\}}\hspace*{\fill}\\
+\hlstd{}\hlstd{\ \ \ \ \ }\hlstd{}\hlsym{\}}\hspace*{\fill}\\
+\hlstd{}\hlstd{\ \ \ \ }\hlstd{}\hlsym{\}}\hspace*{\fill}\\
+\hlstd{}\hlstd{\ \ \ }\hlstd{}\hlsym{\}}\hspace*{\fill}\\
+\hlstd{}\hlstd{\ \ }\hlstd{std}\hlsym{::}\hlstd{ostream}\hlsym{\&\ }\hlstd{}\hlkwd{out}\hlstd{}\hlsym{(}\hlstd{std}\hlsym{::}\hlstd{ostream}\hlsym{\&\ }\hlstd{cout}\hlsym{)\ }\hlstd{}\hlkwb{const}\hspace*{\fill}\\
+\hlstd{}\hlstd{\ \ \ }\hlstd{}\hlsym{\{}\hspace*{\fill}\\
+\hlstd{}\hlstd{\ \ \ }\hlstd{}\hlkwb{int\ }\hlstd{p\ }\hlsym{=\ }\hlstd{cout}\hlsym{.}\hlstd{}\hlkwd{precision}\hlstd{}\hlsym{();}\hspace*{\fill}\\
+\hlstd{}\hlstd{\ \ \ }\hlstd{cout}\hlsym{.}\hlstd{}\hlkwd{precision}\hlstd{}\hlsym{(}\hlstd{}\hlnum{5}\hlstd{}\hlsym{);}\hspace*{\fill}\\
+\hlstd{}\hlstd{\ \ \ }\hlstd{}\hlkwa{for}\hlstd{}\hlsym{(}\hlstd{}\hlkwb{int\ }\hlstd{i\textunderscore r\ }\hlsym{=\ }\hlstd{}\hlnum{0}\hlstd{}\hlsym{;}\hlstd{i\textunderscore r\ }\hlsym{$<$=\ }\hlstd{N}\hlsym{;}\hlstd{i\textunderscore r\ }\hlsym{+=\ }\hlstd{}\hlnum{2}\hlstd{}\hlsym{)}\hspace*{\fill}\\
+\hlstd{}\hlstd{\ \ \ \ }\hlstd{}\hlsym{\{}\hspace*{\fill}\\
+\hlstd{}\hlslc{//\ Eine\ Reihe\ cx}\hspace*{\fill}\\
+\hlstd{}\hlstd{\ \ \ \ }\hlstd{}\hlkwa{if}\hlstd{}\hlsym{(}\hlstd{i\textunderscore r}\hlsym{)\ }\hlstd{cout\ }\hlsym{$<$$<$\ }\hlstd{}\hlstr{"}\hlstd{\ \ \ \ }\hlstr{Cx(i,"}\hlstd{\ }\hlsym{$<$$<$\ }\hlstd{i\textunderscore r\ }\hlsym{$<$$<$\ }\hlstd{}\hlstr{"):\ "}\hlstd{}\hlsym{;}\hspace*{\fill}\\
+\hlstd{}\hlstd{\ \ \ \ }\hlstd{}\hlkwa{for}\hlstd{}\hlsym{(}\hlstd{}\hlkwb{int\ }\hlstd{i\textunderscore phi\ }\hlsym{=\ }\hlstd{}\hlnum{0}\hlstd{}\hlsym{;}\hlstd{i\textunderscore phi\ }\hlsym{$<$=\ }\hlstd{i\textunderscore r}\hlsym{;}\hlstd{i\textunderscore phi\ }\hlsym{+=\ }\hlstd{}\hlnum{2}\hlstd{}\hlsym{)}\hspace*{\fill}\\
+\hlstd{}\hlstd{\ \ \ \ \ }\hlstd{}\hlsym{\{}\hspace*{\fill}\\
+\hlstd{}\hlstd{\ \ \ \ \ }\hlstd{}\hlkwa{if}\hlstd{}\hlsym{(}\hlstd{i\textunderscore r\ }\hlsym{\textbar \textbar \ }\hlstd{i\textunderscore phi}\hlsym{)}\hspace*{\fill}\\
+\hlstd{}\hlstd{\ \ \ \ \ \ }\hlstd{}\hlsym{\{}\hspace*{\fill}\\
+\hlstd{}\hlstd{\ \ \ \ \ \ }\hlstd{cout}\hlsym{.}\hlstd{}\hlkwd{width}\hlstd{}\hlsym{(}\hlstd{}\hlnum{8}\hlstd{}\hlsym{);}\hspace*{\fill}\\
+\hlstd{}\hlstd{\ \ \ \ \ \ }\hlstd{cout\ }\hlsym{$<$$<$\ }\hlstd{std}\hlsym{::}\hlstd{right\ }\hlsym{$<$$<$\ }\hlstd{std}\hlsym{::}\hlstd{fixed\ }\hlsym{$<$$<$\ }\hlstd{}\hlkwd{cx}\hlstd{}\hlsym{(}\hlstd{i\textunderscore phi}\hlsym{,}\hlstd{i\textunderscore r}\hlsym{)\ $<$$<$\ }\hlstd{}\hlstr{"\ "}\hlstd{}\hlsym{;}\hspace*{\fill}\\
+\hlstd{}\hlstd{\ \ \ \ \ \ }\hlstd{}\hlsym{\}}\hspace*{\fill}\\
+\hlstd{}\hlstd{\ \ \ \ \ }\hlstd{}\hlsym{\}}\hspace*{\fill}\\
+\hlstd{}\hlstd{\ \ \ \ }\hlstd{}\hlkwa{if}\hlstd{}\hlsym{(}\hlstd{i\textunderscore r}\hlsym{)\ }\hlstd{cout\ }\hlsym{$<$$<$\ }\hlstd{}\hlstr{"}\hlesc{$\backslash$n}\hlstr{"}\hlstd{}\hlsym{;}\hspace*{\fill}\\
+\hlstd{}\hlslc{//\ Eine\ Reihe\ cy}\hspace*{\fill}\\
+\hlstd{}\hlstd{\ \ \ \ }\hlstd{}\hlkwa{if}\hlstd{}\hlsym{(}\hlstd{i\textunderscore r}\hlsym{)\ }\hlstd{cout\ }\hlsym{$<$$<$\ }\hlstd{}\hlstr{"}\hlstd{\ \ \ \ }\hlstr{Cy(i,"}\hlstd{\ }\hlsym{$<$$<$\ }\hlstd{i\textunderscore r\ }\hlsym{$<$$<$\ }\hlstd{}\hlstr{"):\ "}\hlstd{}\hlsym{;}\hspace*{\fill}\\
+\hlstd{}\hlstd{\ \ \ \ }\hlstd{}\hlkwa{for}\hlstd{}\hlsym{(}\hlstd{}\hlkwb{int\ }\hlstd{i\textunderscore phi\ }\hlsym{=\ }\hlstd{}\hlnum{0}\hlstd{}\hlsym{;}\hlstd{i\textunderscore phi\ }\hlsym{$<$=\ }\hlstd{i\textunderscore r}\hlsym{;}\hlstd{i\textunderscore phi\ }\hlsym{+=\ }\hlstd{}\hlnum{2}\hlstd{}\hlsym{)}\hspace*{\fill}\\
+\hlstd{}\hlstd{\ \ \ \ \ }\hlstd{}\hlsym{\{}\hspace*{\fill}\\
+\hlstd{}\hlstd{\ \ \ \ \ }\hlstd{}\hlkwa{if}\hlstd{}\hlsym{(}\hlstd{i\textunderscore r\ }\hlsym{\textbar \textbar \ }\hlstd{i\textunderscore phi}\hlsym{)}\hspace*{\fill}\\
+\hlstd{}\hlstd{\ \ \ \ \ \ }\hlstd{}\hlsym{\{}\hspace*{\fill}\\
+\hlstd{}\hlstd{\ \ \ \ \ \ }\hlstd{cout}\hlsym{.}\hlstd{}\hlkwd{width}\hlstd{}\hlsym{(}\hlstd{}\hlnum{8}\hlstd{}\hlsym{);}\hspace*{\fill}\\
+\hlstd{}\hlstd{\ \ \ \ \ \ }\hlstd{cout\ }\hlsym{$<$$<$\ }\hlstd{std}\hlsym{::}\hlstd{right\ }\hlsym{$<$$<$\ }\hlstd{std}\hlsym{::}\hlstd{fixed\ }\hlsym{$<$$<$\ }\hlstd{}\hlkwd{cy}\hlstd{}\hlsym{(}\hlstd{i\textunderscore phi}\hlsym{,}\hlstd{i\textunderscore r}\hlsym{)\ $<$$<$\ }\hlstd{}\hlstr{"\ "}\hlstd{}\hlsym{;}\hspace*{\fill}\\
+\hlstd{}\hlstd{\ \ \ \ \ \ }\hlstd{}\hlsym{\}}\hspace*{\fill}\\
+\hlstd{}\hlstd{\ \ \ \ \ }\hlstd{}\hlsym{\}}\hspace*{\fill}\\
+\hlstd{}\hlstd{\ \ \ \ }\hlstd{}\hlkwa{if}\hlstd{}\hlsym{(}\hlstd{i\textunderscore r}\hlsym{)\ }\hlstd{cout\ }\hlsym{$<$$<$\ }\hlstd{}\hlstr{"}\hlesc{$\backslash$n}\hlstr{"}\hlstd{}\hlsym{;}\hspace*{\fill}\\
+\hlstd{}\hlstd{\ \ \ \ }\hlstd{}\hlsym{\}}\hspace*{\fill}\\
+\hlstd{}\hlstd{\ \ \ }\hlstd{cout}\hlsym{.}\hlstd{}\hlkwd{precision}\hlstd{}\hlsym{(}\hlstd{p}\hlsym{);}\hspace*{\fill}\\
+\hlstd{}\hlstd{\ \ \ }\hlstd{}\hlkwa{return\ }\hlstd{cout}\hlsym{;}\hspace*{\fill}\\
+\hlstd{}\hlstd{\ \ \ }\hlstd{}\hlsym{\}}\hspace*{\fill}\\
+\hlstd{}\hlstd{\ \ }\hlstd{}\hlsym{\};}\hspace*{\fill}\\
+\hlstd{\ }\hlsym{\}}\hspace*{\fill}\\
+\hlstd{}\hspace*{\fill}\\
+\hldir{\#endif}\hlstd{}\hspace*{\fill}\\
+\mbox{}
+\normalfont

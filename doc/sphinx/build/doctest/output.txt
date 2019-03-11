@@ -1,0 +1,75 @@
+Results of doctest builder run on 2018-12-17 16:34:55
+=====================================================
+
+Document: index
+---------------
+**********************************************************************
+File "index.rst", line 176, in default
+Failed example:
+    ldm.setCamera(1.0,0.8,0.6,0.1,0.1,1.0,100.0)
+Expected nothing
+Got:
+    <lens_distortion_plugins.tde4_ldp_py_wrapper object at 0x7f50631cda38>
+**********************************************************************
+File "index.rst", line 208, in default
+Failed example:
+    ldm.setParameterValueDouble("tde4_focal_length_cm",1.0)
+Expected nothing
+Got:
+    <lens_distortion_plugins.tde4_ldp_py_wrapper object at 0x7f50631cda20>
+**********************************************************************
+File "index.rst", line 209, in default
+Failed example:
+    ldm.setParameterValueDouble("tde4_filmback_width_cm",0.8)
+Expected nothing
+Got:
+    <lens_distortion_plugins.tde4_ldp_py_wrapper object at 0x7f50631cda20>
+**********************************************************************
+File "index.rst", line 210, in default
+Failed example:
+    ldm.setParameterValueDouble("tde4_filmback_height_cm",0.6)
+Expected nothing
+Got:
+    <lens_distortion_plugins.tde4_ldp_py_wrapper object at 0x7f50631cda20>
+**********************************************************************
+File "index.rst", line 211, in default
+Failed example:
+    ldm.setParameterValueDouble("tde4_pixel_aspect",1.0)
+Expected nothing
+Got:
+    <lens_distortion_plugins.tde4_ldp_py_wrapper object at 0x7f50631cda20>
+**********************************************************************
+File "index.rst", line 212, in default
+Failed example:
+    ldm.setParameterValueDouble("Distortion - Degree 2",0.1)
+Expected nothing
+Got:
+    <lens_distortion_plugins.tde4_ldp_py_wrapper object at 0x7f50631cda20>
+**********************************************************************
+File "index.rst", line 213, in default
+Failed example:
+    ldm.initializeParameters()
+Expected nothing
+Got:
+    <lens_distortion_plugins.tde4_ldp_py_wrapper object at 0x7f50631cda20>
+**********************************************************************
+File "index.rst", line 216, in default
+Failed example:
+    print ldm.getBoundingBoxDistort(0,0,1,1)
+Expected:
+    (0.027077570819212873, 0.016296699052012663, 0.9729224291807872, 0.9837033009479873)
+Got:
+    (0.027077570819212943, 0.016296699052012663, 0.9729224291807871, 0.9837033009479873)
+**********************************************************************
+1 items had failures:
+   8 of  31 in default
+31 tests in 1 items.
+23 passed and 8 failed.
+***Test Failed*** 8 failures.
+
+Doctest summary
+===============
+   31 tests
+    8 failures in tests
+    0 failures in setup code
+    0 failures in cleanup code

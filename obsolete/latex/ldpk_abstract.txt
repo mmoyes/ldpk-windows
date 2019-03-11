@@ -1,0 +1,7 @@
+The Lens Distortion Plugin Kit (LDPK) is a collection of sources, headers and documents
+which help you to develop lens distortion plugins for 3DE4 and compositing systems.
+The underlying mathematics of our current built-in distortion models is
+explained, including derivatives required for inverting distortion functions.
+The package provides pre-compiled binaries and utility classes
+for testing and numeric analysis. LDPK runs on OSX 32-/64-bit and Linux 32-/64-bit.
+

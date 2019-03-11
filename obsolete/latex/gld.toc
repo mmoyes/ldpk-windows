@@ -1,0 +1,52 @@
+\contentsline {section}{\numberline {0}About this document}{3}{section.0}
+\contentsline {subsection}{\numberline {0.1}How to avoid reading all this}{3}{subsection.0.1}
+\contentsline {subsection}{\numberline {0.2}Versions of this document}{3}{subsection.0.2}
+\contentsline {section}{\numberline {1}The Lens Distortion Plugin Kit (LDPK)}{4}{section.1}
+\contentsline {subsection}{\numberline {1.0}Versions of the LDPK}{4}{subsection.1.0}
+\contentsline {subsection}{\numberline {1.1}What you need}{4}{subsection.1.1}
+\contentsline {subsection}{\numberline {1.2}Installing the LDPK}{4}{subsection.1.2}
+\contentsline {subsection}{\numberline {1.3}Content of the LDPK}{4}{subsection.1.3}
+\contentsline {subsection}{\numberline {1.4}Scripts}{5}{subsection.1.4}
+\contentsline {section}{\numberline {2}Math}{6}{section.2}
+\contentsline {subsection}{\numberline {2.1}Notation}{6}{subsection.2.1}
+\contentsline {subsection}{\numberline {2.2}Definitions}{6}{subsection.2.2}
+\contentsline {subsection}{\numberline {2.3}Inverting the distortion function}{8}{subsection.2.3}
+\contentsline {subsection}{\numberline {2.4}A zoo of lens distortion models}{9}{subsection.2.4}
+\contentsline {subsubsection}{\numberline {2.4.1}Decentering}{9}{subsubsection.2.4.1}
+\contentsline {subsubsection}{\numberline {2.4.2}3DE Classic LD Model}{9}{subsubsection.2.4.2}
+\contentsline {subsubsection}{\numberline {2.4.3}Anamorphic, Degree $6$}{10}{subsubsection.2.4.3}
+\contentsline {subsubsection}{\numberline {2.4.4}Radial - Fisheye, Degree $8$}{11}{subsubsection.2.4.4}
+\contentsline {subsubsection}{\numberline {2.4.5}Radial - Standard, Degree $4$}{12}{subsubsection.2.4.5}
+\contentsline {section}{\numberline {3}Implementation}{13}{section.3}
+\contentsline {subsection}{\numberline {3.1}General remarks}{13}{subsection.3.1}
+\contentsline {subsection}{\numberline {3.2}The Lens Distortion Plugin Concept}{13}{subsection.3.2}
+\contentsline {subsubsection}{\numberline {3.2.1}Coordinate systems}{14}{subsubsection.3.2.1}
+\contentsline {paragraph}{\numberline {3.2.1.1}Camera coordinates}{14}{figure.2}
+\contentsline {paragraph}{\numberline {3.2.1.2}Unit coordinates}{14}{paragraph.3.2.1.2}
+\contentsline {paragraph}{\numberline {3.2.1.3}Relation between camera and unit coordinates}{14}{figure.3}
+\contentsline {subsubsection}{\numberline {3.2.2}The API}{15}{subsubsection.3.2.2}
+\contentsline {paragraph}{\numberline {3.2.2.1}Model and parameter identifiers}{15}{paragraph.3.2.2.1}
+\contentsline {paragraph}{\numberline {3.2.2.2}Parameter types and values}{16}{paragraph.3.2.2.2}
+\contentsline {paragraph}{\numberline {3.2.2.3}Modifying parameter values}{17}{paragraph.3.2.2.3}
+\contentsline {paragraph}{\numberline {3.2.2.4}Preparing the model}{17}{paragraph.3.2.2.4}
+\contentsline {paragraph}{\numberline {3.2.2.5}Remove and apply lens distortion}{18}{paragraph.3.2.2.5}
+\contentsline {subsection}{\numberline {3.3}Building a plugin for 3DE4}{18}{subsection.3.3}
+\contentsline {subsubsection}{\numberline {3.3.1}Multi-threading}{19}{subsubsection.3.3.1}
+\contentsline {subsubsection}{\numberline {3.3.2}Preparations}{19}{subsubsection.3.3.2}
+\contentsline {subsubsection}{\numberline {3.3.3}The distortion class}{21}{subsubsection.3.3.3}
+\contentsline {paragraph}{\numberline {3.3.3.1}The derived class}{21}{paragraph.3.3.3.1}
+\contentsline {paragraph}{\numberline {3.3.3.2}The base class {\tt generic\_distortion\_base}}{23}{paragraph.3.3.3.2}
+\contentsline {subsubsection}{\numberline {3.3.4}The plugin class}{24}{subsubsection.3.3.4}
+\contentsline {paragraph}{\numberline {3.3.4.1}The base class: built-in parameters and lookup table}{24}{paragraph.3.3.4.1}
+\contentsline {paragraph}{\numberline {3.3.4.2}The derived class}{25}{paragraph.3.3.4.2}
+\contentsline {subsubsection}{\numberline {3.3.5}Compiling, testing, installing}{27}{subsubsection.3.3.5}
+\contentsline {subsubsection}{\numberline {3.3.6}A class for lookup tables}{28}{subsubsection.3.3.6}
+\contentsline {paragraph}{\numberline {3.3.6.1}Iterating grid points}{28}{paragraph.3.3.6.1}
+\contentsline {subsection}{\numberline {3.4}Building a compositing node}{30}{subsection.3.4}
+\contentsline {subsubsection}{\numberline {3.4.1}Classes}{30}{subsubsection.3.4.1}
+\contentsline {subsubsection}{\numberline {3.4.2}Unit coordinates and pixel coordinates}{30}{subsubsection.3.4.2}
+\contentsline {subsubsection}{\numberline {3.4.3}Removing and applying lens distortion}{31}{subsubsection.3.4.3}
+\contentsline {subsubsection}{\numberline {3.4.4}Resize and reapply}{32}{subsubsection.3.4.4}
+\contentsline {paragraph}{\numberline {3.4.4.1}Resize}{32}{figure.12}
+\contentsline {paragraph}{\numberline {3.4.4.2}Reapply}{33}{paragraph.3.4.4.2}
+\contentsline {section}{\numberline {A}Table of symbols}{34}{appendix.A}
